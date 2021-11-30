@@ -51,7 +51,7 @@ const Login = function () {
   `;
 
   return (
-    <ThemeProvider>
+    <ThemeProvider className="login">
       <Container responsive>
         <Grid container style={{ height: '100vh' }}>
           <Grid item span={6}>
@@ -86,8 +86,8 @@ const Login = function () {
                 >
                 </FormElementWrapper>
                 <Box alignHor className="mt-4">
-                  <Button appearance={SECONDARY_BUTTON}>SSO sign-in</Button>
-                  <Button
+                  <Button className="rounded-button" appearance={SECONDARY_BUTTON}>SSO sign-in</Button>
+                  <Button className="rounded-button"
                     appearance={PRIMARY_BUTTON}
                     style={{
                       width: '114px',

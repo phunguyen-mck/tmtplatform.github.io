@@ -1,12 +1,16 @@
 .input-group .input-group-text {
-    border-radius: 5px 0 0 5px;
+    border-radius: 3px 0 0 3px;
     height: 55px !important;
     background: none;
 }
 
 .input-group input{
-    border-radius: 0 5px 5px 0;
+    border-radius: 0 3px 3px 0;
     height: 55px !important;
     min-width: 350px;
     border-left: none;
+}
+
+.rounded-button {
+	border-radius: 3px !important;
 }
