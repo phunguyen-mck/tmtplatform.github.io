@@ -1,3 +1,5 @@
+import './mck-bootstrap.min.css';
+import './Login.css';
 import React from 'react';
 import styled from '@emotion/styled';
 import {
@@ -15,19 +17,33 @@ import {
   DISPLAY_SIX,
   Button,
   Spacer,
+  Icon,
   SECONDARY_BUTTON,
   PRIMARY_BUTTON,
+  TYPE_GLYPH,
+  TYPE_OUTLINE,
 } from '@mds/mds-reactjs-library';
 import img from './images/download.png';
+import Single01Icon from '@mds/mds-icons/icons/svg/outline-16-single-01.svg';
+import PadlockIcon from '@mds/mds-icons/icons/svg/outline-16-padlock.svg';
+
+
+const GroupedInput = function (props) {
+  return (
+    <div className="input-group">
+      <div className="input-group-prepend">
+        <div className="input-group-text">
+          <Icon src={props.iconSrc} type={TYPE_OUTLINE} size={16} />
+        </div>
+      </div>
+      <Input type="text" className="form-control" id={props.id} placeholder={props.placeholder}/>
+    </div>
+  )
+}
+
 
 const Login = function () {
   const theme = React.useContext(ThemeContext);
-
-  const LargeInput = styled(Input)`
-    width: 400px;
-    border-radius: 5px;
-    height: 60px !important;
-  `;
 
   const Spacer = styled.div`
     width: 100%;
@@ -54,22 +70,22 @@ const Login = function () {
                 <Typography type={DISPLAY_SIX} tablet>
                   Login
                 </Typography>
-                <Spacer />
                 <FormElementWrapper
+                  className="mt-3"
                   size={SIZE_LARGE}
-                  component={LargeInput}
+                  component={GroupedInput}
                   label="Username"
-                  inputProps={{ placeholder: 'Enter your username' }}
+                  inputProps={{ iconSrc:Single01Icon, placeholder: 'Enter your username' }}
                 />
-                <Spacer />
                 <FormElementWrapper
+                  className="mt-3"
                   size={SIZE_LARGE}
-                  component={LargeInput}
+                  component={GroupedInput}
                   label="Password"
-                  inputProps={{ placeholder: 'Enter your password' }}
-                />
-                <Spacer />
-                <Box alignHor>
+                  inputProps={{ iconSrc:PadlockIcon, placeholder: 'Enter your password' }}
+                >
+                </FormElementWrapper>
+                <Box alignHor className="mt-4">
                   <Button appearance={SECONDARY_BUTTON}>SSO sign-in</Button>
                   <Button
                     appearance={PRIMARY_BUTTON}

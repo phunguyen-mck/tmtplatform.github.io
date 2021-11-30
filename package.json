@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@mds/mds-bootstrap-theme": "^1.1.0",
+    "@mds/mds-icons": "^0.9.0",
     "@mds/mds-reactjs-library": "^1.2.0",
     "@testing-library/jest-dom": "^5.15.1",
     "@testing-library/react": "^11.2.7",
