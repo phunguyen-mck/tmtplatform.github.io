@@ -4,6 +4,16 @@ import useIsMounted from './useIsMounted';
 
 const animateElementHeight = ({ element, height }) => {
   return requestAnimationFrame(() => {
+    if (height > 0) {
+      element.ontransitionend = (e) => {
+        if (e.propertyName === 'height') {
+          element.style.overflow = 'visible';
+        }
+      };
+    } else {
+      element.style.overflow = 'hidden';
+    }
+
     element.style.height = height + 'px';
   });
 };
@@ -20,7 +30,7 @@ function useCollapse(targetRef) {
     // add style
     targetedElement.style.transition = 'height 0.2s ease-in-out';
     targetedElement.style.overflow = 'hidden';
-    targetedElement.style.height = '1px';
+    targetedElement.style.height = '0px';
   }, []);
 
   // Trigger this Effect for next update (expanded changes)
@@ -31,6 +41,7 @@ function useCollapse(targetRef) {
     const currentHeight = expanded ? 0 : targetedElement.scrollHeight;
     const toHeight = expanded ? targetedElement.scrollHeight : 0;
 
+    targetedElement.ontransitionend = undefined;
     targetedElement.style.height = currentHeight + 'px';
 
     let animatedId;
