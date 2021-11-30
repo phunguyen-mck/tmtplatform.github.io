@@ -24,7 +24,9 @@ const Login = function () {
   const theme = React.useContext(ThemeContext);
 
   const LargeInput = styled(Input)`
-    width: 380px;
+    width: 400px;
+    border-radius: 5px;
+    height: 60px !important;
   `;
 
   const Spacer = styled.div`
@@ -72,6 +74,7 @@ const Login = function () {
                   <Button
                     appearance={PRIMARY_BUTTON}
                     style={{
+                      width: '114px',
                       marginLeft: '20px',
                     }}
                   >
