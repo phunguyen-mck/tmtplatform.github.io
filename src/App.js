@@ -1,8 +1,8 @@
-import Login from './Login';
+import { ThemeProvider } from '@mds/mds-reactjs-library';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import JourneyPage from './pages/Journey';
-import { ThemeProvider } from '@mds/mds-reactjs-library';
+import Login from './Login';
 
 function App() {
   return (
