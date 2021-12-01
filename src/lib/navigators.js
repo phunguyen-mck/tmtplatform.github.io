@@ -1,4 +1,4 @@
-import RoutePathsMap from '../constants/RoutePathsMap';
+import RoutePathsMap from 'constant/RoutePathsMap';
 /**
  *  Resolve the routePath with params/query
  *
@@ -24,4 +24,8 @@ export const navigateToStrategyHubPage = (navigate) => {
 };
 export const navigateToJourneyPage = (navigate) => {
   navigateToRoute(navigate, RoutePathsMap.Journey.index);
+};
+
+export const navigateToJourneySetupPage = (navigate) => {
+  navigateToRoute(navigate, RoutePathsMap.Journey.Setup);
 };
