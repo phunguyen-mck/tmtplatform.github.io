@@ -18,20 +18,21 @@ const StyledHeader = styled.div`
   justify-content: space-between;
 `;
 
-const IconWrapper = styled.div`
-  width: ${(prop) => prop.size}px;
-  height: ${(prop) => prop.size}px;
-  border-radius: 50%;
-  border: 1px solid;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-color: ${(props) => props.color};
-`;
-
 const StyledIcon = styled(Icon)`
   width: ${(props) => props.size}px;
   height: ${(props) => props.size}px;
+`;
+
+const IconWrapper = styled.div`
+  width: ${(prop) => prop.size}px;
+  height: ${(prop) => prop.size}px;
+  background-color: ${(props) => props.backgroundColor};
+  border-radius: 50%;
+  border: 1px solid;
+  border-color: ${(props) => props.color};
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 const JourneyCard = ({ content, icon, renderCollapseContent }) => {
@@ -42,10 +43,23 @@ const JourneyCard = ({ content, icon, renderCollapseContent }) => {
   return (
     <StyledCard className="shadow p-3 mb-3 bg-white">
       <StyledHeader>
-        <IconWrapper color={primaryColor} size={36}>
-          <Icon size={16} type="outline" src={icon} fill={primaryColor} />
+        <IconWrapper
+          color={primaryColor}
+          size={36}
+          backgroundColor={expanded ? primaryColor : 'white'}
+        >
+          <Icon
+            size={16}
+            type="outline"
+            src={icon}
+            fill={expanded ? 'white' : primaryColor}
+            key={expanded}
+          />
         </IconWrapper>
-        <Typography type="ARTICLE_BODY" className="font-weight-bolder">
+        <Typography
+          type="ARTICLE_BODY"
+          className={expanded ? 'font-weight-bolder' : 'font-weight-bold'}
+        >
           {content}
         </Typography>
         <IconWrapper

@@ -23,7 +23,6 @@ const AccountNameAndIndustrySetting = () => {
 
   return (
     <div>
-      <div></div>
       <Grid container justify="space-between">
         <Grid item>
           <Typography type="BODY">Account Name</Typography>
