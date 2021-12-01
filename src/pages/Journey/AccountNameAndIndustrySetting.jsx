@@ -10,7 +10,7 @@ import {
 } from '@mds/mds-reactjs-library';
 import ArrowRight from '@mds/mds-icons/icons/svg/outline-16-arrow-right.svg';
 
-import { navigateToStrategyHubPage } from '../../lib/navigators';
+import { navigateToStrategyHubPage } from 'lib/navigators';
 
 const AccountNameAndIndustrySetting = () => {
   const SelectStyled = styled(Select)`
@@ -26,16 +26,27 @@ const AccountNameAndIndustrySetting = () => {
       <Grid container justify="space-between">
         <Grid item>
           <Typography type="BODY">Account Name</Typography>
-          <SelectStyled options={accountList} placeholder="Select..." custom />
+          <SelectStyled
+            size="SIZE_LARGE"
+            options={accountList}
+            placeholder="Select..."
+            custom
+          />
         </Grid>
         <Grid item>
           <Typography type="BODY">Industry</Typography>
-          <SelectStyled options={industryList} placeholder="Select..." custom />
+          <SelectStyled
+            size="SIZE_LARGE"
+            options={industryList}
+            placeholder="Select..."
+            custom
+          />
         </Grid>
       </Grid>
       <div className="text-right mt-3">
         <Button
           className="text-right"
+          style={{ width: '122px' }}
           onClick={() => navigateToStrategyHubPage(navigate)}
         >
           Next

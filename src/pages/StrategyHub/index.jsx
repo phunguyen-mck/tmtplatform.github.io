@@ -18,8 +18,15 @@ import Outline48Calendar2 from '@mds/mds-icons/icons/svg/outline-48-calendar-2.s
 import Outline48Handshake from '@mds/mds-icons/icons/svg/outline-48-handshake.svg';
 import Outline48FilterOrganization from '@mds/mds-icons/icons/svg/outline-48-filter-organization.svg';
 
-import useThemeColorMapping from '../../hooks/useThemeColorMapping';
-import { navigateToJourneyPage } from '../../lib/navigators';
+import TreeOrgIcon from 'components/Icons/TreeOrg.svg';
+import TimeIcon from 'components/Icons/Time.svg';
+import ChartColumnIcon from 'components/Icons/ChartColumn.svg';
+import MoneyWithCoinIcon from 'components/Icons/MoneyWithCoin.svg';
+import LaptopWithMouseIcon from 'components/Icons/LaptopWithMouse.svg';
+import HandShakeIcon from 'components/Icons/HandShake.svg';
+
+import useThemeColorMapping from 'hooks/useThemeColorMapping';
+import { navigateToJourneyPage } from 'lib/navigators';
 
 import StrategyCard from './Card';
 
@@ -34,7 +41,7 @@ const StrategyHubPage = () => {
   const navigate = useNavigate();
 
   return (
-    <Container maxWidth={1000} className="mt-4 p-1" style={{ height: '100%' }}>
+    <Container maxWidth={1100} className="mt-4 p-1" style={{ height: '100%' }}>
       <div className="d-flex align-items-center">
         <Icon
           size={24}
@@ -58,8 +65,11 @@ const StrategyHubPage = () => {
           <PrimaryText component="span">{accountName}</PrimaryText>
         </Typography>
       </div>
-      <div className="d-flex align-items-center justify-content-center">
-        <Grid container spacing={40} className="mt-6">
+      <div
+        className="d-flex align-items-center justify-content-center"
+        style={{ marginTop: -32 }}
+      >
+        <Grid container spacing={52} className="mt-6">
           {strategyList.map(({ name, icon }) => (
             <Grid item>
               <StrategyCard name={name} icon={icon} />
@@ -81,19 +91,19 @@ const useAccount = () => {
 const getStrategeList = () => [
   {
     name: 'Overall financials & strategic priorities',
-    icon: Outline48ChartBar33,
+    icon: ChartColumnIcon,
   },
   {
     name: 'Top digital offerings',
-    icon: Outline48Laptop72,
+    icon: LaptopWithMouseIcon,
   },
   {
     name: 'IT spend map',
-    icon: Outline48MoneyCoins,
+    icon: MoneyWithCoinIcon,
   },
   {
     name: 'Past deals and upcoming renewals',
-    icon: Outline48Calendar2,
+    icon: TimeIcon,
   },
   {
     name: 'Major deals by peers',
@@ -101,7 +111,7 @@ const getStrategeList = () => [
   },
   {
     name: 'Org and key stakeholders',
-    icon: Outline48FilterOrganization,
+    icon: TreeOrgIcon,
   },
 ];
 
