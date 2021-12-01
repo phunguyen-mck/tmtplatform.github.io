@@ -22,6 +22,7 @@ import {
   PRIMARY_BUTTON,
   TYPE_GLYPH,
   TYPE_OUTLINE,
+  
 } from '@mds/mds-reactjs-library';
 import img from './images/download.png';
 import Single01Icon from '@mds/mds-icons/icons/svg/outline-16-single-01.svg';
