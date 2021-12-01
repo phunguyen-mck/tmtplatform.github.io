@@ -4,11 +4,16 @@ import styled from '@emotion/styled';
 
 import ArrowRight from '@mds/mds-icons/icons/svg/outline-16-arrow-right.svg';
 
-import useThemeColorMapping from '../../hooks/useThemeColorMapping';
+import useThemeColorMapping from 'hooks/useThemeColorMapping';
 
 const StyledCard = styled.div`
-  width: 300px;
-  height: 150px;
+  width: 320px;
+  height: 171px;
+  background: var(--color-neutral-white) 0% 0% no-repeat padding-box;
+  background: #ffffff 0% 0% no-repeat padding-box;
+  box-shadow: 0px 0px 24px rgba(21, 21, 21, 0.08);
+  border-radius: 6px;
+  opacity: 1;
 `;
 const IconWrapper = styled.div`
   width: ${(prop) => prop.size}px;
@@ -39,7 +44,7 @@ const StrategyCard = ({ icon, name }) => {
       </div>
       <Grid container justify="space-between" alignItems="center">
         <Grid item flex="200px">
-          <Typography type="ARTICLE_BODY" className="font-weight-bolder">
+          <Typography type="ARTICLE_LEAD" className="font-weight-bolder">
             {name}
           </Typography>
         </Grid>
