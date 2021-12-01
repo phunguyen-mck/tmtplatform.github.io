@@ -1,12 +1,12 @@
-import React, { useEffect } from "react";
-import { Link, useNavigate, useLocation } from "react-router-dom";
-import styled from "@emotion/styled";
+import React, { useEffect } from 'react';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
+import styled from '@emotion/styled';
 import {
   Header,
   Avatar,
   HeaderIconButton,
-  HeaderRightSectionItemWrapper
-} from "@mds/mds-reactjs-library";
+  HeaderRightSectionItemWrapper,
+} from '@mds/mds-reactjs-library';
 
 const AvatarIconButton = styled(HeaderIconButton)`
   width: auto;
@@ -28,44 +28,42 @@ const HeaderComponent = () => {
   const navigate = useNavigate();
   const [path, setPath] = React.useState(location.pathname);
   const AvatarStyled = styled(Avatar)`
-  margin: 0 3px;
-  fontSize: 10px;
-`;
+    margin: 0 3px;
+    fontsize: 10px;
+  `;
   useEffect(() => {
     setPath(location.pathname);
   }, [location.pathname]);
 
   const rightSection = [
     <HeaderRightSectionItemWrapper
-    key="alerts"
-    label="Alerts"
-    aria-label="Alerts"
-    onClick={() => console.log('onClick Alerts')}
-    horizontalLayoutComponent={props => (
-      <AvatarIconButton {...props}>
-            <AvatarStyled alt="Phu Nguyen" /> 
-      </AvatarIconButton>
-    )}
-  />,
-  <HeaderRightSectionItemWrapper
-  key="alerts"
-  label="Alerts"
-  aria-label="Alerts"
-  onClick={() => console.log('onClick Alerts')}
-  horizontalLayoutComponent={props => (
-    <div>
-        Phu Nguyen
-    </div>
-
-  )}
-/>,
-];
+      key="alerts"
+      label="Alerts"
+      aria-label="Alerts"
+      onClick={() => console.log('onClick Alerts')}
+      horizontalLayoutComponent={(props) => (
+        <AvatarIconButton {...props}>
+          <AvatarStyled alt="Phu Nguyen" />
+        </AvatarIconButton>
+      )}
+    />,
+    <HeaderRightSectionItemWrapper
+      key="alerts"
+      label="Alerts"
+      aria-label="Alerts"
+      onClick={() => console.log('onClick Alerts')}
+      horizontalLayoutComponent={(props) => <div>Phu Nguyen</div>}
+    />,
+  ];
+  // quick hack to hide header on login page
+  if (location.pathname === '/' || location.pathname === '/login') {
+    return null;
+  }
   return (
     <Header
-    logoSection="Sale 2.0 Platform"
+      logoSection="Sale 2.0 Platform"
       rightSection={rightSection}
-    >
-    </Header>
-  )
-  }
+    ></Header>
+  );
+};
 export default HeaderComponent;
