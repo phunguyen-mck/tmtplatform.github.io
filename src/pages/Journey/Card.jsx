@@ -29,6 +29,11 @@ const IconWrapper = styled.div`
   border-color: ${(props) => props.color};
 `;
 
+const StyledIcon = styled(Icon)`
+  width: ${(props) => props.size}px;
+  height: ${(props) => props.size}px;
+`;
+
 const JourneyCard = ({ content, icon, renderCollapseContent }) => {
   const { primaryColor } = useThemeColorMapping();
   const ref = useRef();
@@ -47,9 +52,10 @@ const JourneyCard = ({ content, icon, renderCollapseContent }) => {
           color={primaryColor}
           size={28}
           onClick={() => setExpanded((t) => !t)}
+          style={{ cursor: 'pointer' }}
         >
-          <Icon
-            size={16}
+          <StyledIcon
+            size={12}
             type="outline"
             src={expanded ? Outline16ArrowUp : Outline16ArrowDown}
             fill={primaryColor}
