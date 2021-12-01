@@ -1,4 +1,6 @@
 import React, { useMemo } from 'react';
+import { useNavigate } from 'react-router-dom';
+import styled from '@emotion/styled';
 import {
   Select,
   Typography,
@@ -8,19 +10,19 @@ import {
 } from '@mds/mds-reactjs-library';
 import ArrowRight from '@mds/mds-icons/icons/svg/outline-16-arrow-right.svg';
 
-import styled from '@emotion/styled';
+import { navigateToStrategyHubPage } from '../../lib/navigators';
 
 const AccountNameAndIndustrySetting = () => {
   const SelectStyled = styled(Select)`
     width: 250px;
   `;
 
+  const navigate = useNavigate();
   const industryList = useMemo(() => getIndustryList(), []);
   const accountList = useMemo(() => getAccountList(), []);
 
   return (
     <div>
-      <div></div>
       <Grid container justify="space-between">
         <Grid item>
           <Typography type="BODY">Account Name</Typography>
@@ -32,7 +34,10 @@ const AccountNameAndIndustrySetting = () => {
         </Grid>
       </Grid>
       <div className="text-right mt-3">
-        <Button className="text-right">
+        <Button
+          className="text-right"
+          onClick={() => navigateToStrategyHubPage(navigate)}
+        >
           Next
           <Icon
             size={16}
