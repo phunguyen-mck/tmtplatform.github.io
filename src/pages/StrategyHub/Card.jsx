@@ -1,10 +1,13 @@
-import React, { useMemo } from 'react';
+import React from 'react';
+import { useNavigate } from 'react-router';
 import { Typography, Grid, Icon } from '@mds/mds-reactjs-library';
+
 import styled from '@emotion/styled';
 
 import ArrowRight from '@mds/mds-icons/icons/svg/outline-16-arrow-right.svg';
 
 import useThemeColorMapping from 'hooks/useThemeColorMapping';
+import { navigateToJourneySetupPage } from 'lib/navigators';
 
 const StyledCard = styled.div`
   width: 320px;
@@ -31,6 +34,7 @@ const StyledIcon = styled(Icon)`
 
 const StrategyCard = ({ icon, name }) => {
   const { primaryColor } = useThemeColorMapping();
+  const navigate = useNavigate();
   return (
     <StyledCard className="shadow p-3 bg-white">
       <div className="mb-2">
@@ -53,6 +57,7 @@ const StrategyCard = ({ icon, name }) => {
             color={primaryColor}
             size={28}
             className="d-flex align-items-center justify-content-center"
+            onClick={() => navigateToJourneySetupPage(navigate)}
           >
             <StyledIcon
               size={12}

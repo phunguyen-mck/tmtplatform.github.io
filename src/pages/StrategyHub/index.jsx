@@ -11,12 +11,6 @@ import {
   Icon,
 } from '@mds/mds-reactjs-library';
 import ArrowLeft from '@mds/mds-icons/icons/svg/outline-24-arrow-left.svg';
-import Outline48ChartBar33 from '@mds/mds-icons/icons/svg/outline-48-chart-bar-33.svg';
-import Outline48Laptop72 from '@mds/mds-icons/icons/svg/outline-48-laptop-72.svg';
-import Outline48MoneyCoins from '@mds/mds-icons/icons/svg/outline-48-money-coins.svg';
-import Outline48Calendar2 from '@mds/mds-icons/icons/svg/outline-48-calendar-2.svg';
-import Outline48Handshake from '@mds/mds-icons/icons/svg/outline-48-handshake.svg';
-import Outline48FilterOrganization from '@mds/mds-icons/icons/svg/outline-48-filter-organization.svg';
 
 import TreeOrgIcon from 'components/Icons/TreeOrg.svg';
 import TimeIcon from 'components/Icons/Time.svg';
@@ -107,7 +101,7 @@ const getStrategeList = () => [
   },
   {
     name: 'Major deals by peers',
-    icon: Outline48Handshake,
+    icon: HandShakeIcon,
   },
   {
     name: 'Org and key stakeholders',
