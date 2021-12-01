@@ -2,20 +2,27 @@ import './mck-bootstrap.min.css';
 import React from 'react';
 import './ActiveEngagement.scss'
 import _ from 'lodash';
-import {
-    Container, Grid, HEADING_SIX, Icon, Input, Table, ThemeProvider, TYPE_OUTLINE, Typography,
-} from '@mds/mds-reactjs-library';
+import {ArcElement, Chart} from 'chart.js'
+import {Doughnut} from 'react-chartjs-2';
 
+import {Container, DISPLAY_SIX, Grid, HEADING_SIX, Table, ThemeProvider, Typography,} from '@mds/mds-reactjs-library';
 
-const GroupedInput = function (props) {
-    return (<div className="input-group">
-        <div className="input-group-prepend">
-            <div className="input-group-text">
-                <Icon src={props.iconSrc} type={TYPE_OUTLINE} size={16}/>
-            </div>
-        </div>
-        <Input type="text" className="form-control" id={props.id} placeholder={props.placeholder}/>
-    </div>)
+Chart.register(ArcElement);
+const StatusTag = function (props) {
+    let type = "default";
+    switch (props.type) {
+        case "completed":
+            type = "completed";
+            break;
+        case "inprogress":
+            type = "inprogress";
+            break;
+        default:
+            break;
+    }
+    return <div className={`status-tag ${props.type}`}>
+        {props.value}
+    </div>
 }
 
 const EngagementCard = function (props) {
@@ -23,7 +30,7 @@ const EngagementCard = function (props) {
     return (<div className="engagement-card">
         <div className="engagement-code">{engagement.code}</div>
         <div className="engagement-company-name">{engagement.companyName}</div>
-        <div className="engagement-status">{engagement.status}</div>
+        <StatusTag value={engagement.status} type={"inprogress"}></StatusTag>
     </div>);
 }
 
@@ -35,6 +42,41 @@ const CodeCellRenderer = args => {
 const TextCellRenderer = args => {
     const {value} = args;
     return (<div className="text-cell">{value}</div>);
+};
+
+const StatusCellRenderer = args => {
+    const {value} = args;
+
+    const data = {
+        labels: ['Done', 'NotDone'], datasets: [{
+            data: [39, 61], backgroundColor: ['#3C96B4', '#E6E6E6'], hoverOffset: 4
+        }],
+    };
+
+    const plugins = [{
+        beforeDraw: function (chart) {
+            const fontSize = 15;
+            const {height, width, ctx} = chart;
+            ctx.restore();
+            ctx.font = `${fontSize}px Bower`;
+            ctx.textBaseline = "top";
+            const text = value + "%";
+            const textX = Math.round((width - ctx.measureText(text).width) / 2);
+            const textY = Math.round((height - fontSize) / 2);
+            ctx.fillText(text, textX, textY);
+            ctx.save();
+        }
+    }]
+
+    return (<div className="status-cell d-flex flex-row align-items-center">
+        <div className="canvas-container">
+            <Doughnut data={data} options={{
+                animation: false, cutout: 28, radius: 30,
+            }} plugins={plugins}
+            />
+        </div>
+        <StatusTag value={"In progress"} type={"inprogress"}></StatusTag>
+    </div>);
 };
 
 
@@ -57,7 +99,7 @@ const ActiveEngagements = function () {
     }]
 
     const columns = [{
-        dataKey: 'chargeCode', label: 'Charge code', width: 120, CellRenderer: CodeCellRenderer, HeaderRenderer,
+        dataKey: 'chargeCode', label: 'Charge code', width: 160, CellRenderer: CodeCellRenderer, HeaderRenderer,
     }, {
         dataKey: 'client', label: 'Client', width: 100, flexGrow: true, CellRenderer: TextCellRenderer, HeaderRenderer,
     }, {
@@ -77,7 +119,12 @@ const ActiveEngagements = function () {
     }, {
         dataKey: 'stage', label: 'Stage', width: 100, flexGrow: true, CellRenderer: TextCellRenderer, HeaderRenderer,
     }, {
-        dataKey: 'status', label: 'Status', width: 100, CellRenderer: TextCellRenderer, HeaderRenderer,
+        dataKey: 'status',
+        label: 'Status',
+        width: 100,
+        flexGrow: true,
+        CellRenderer: StatusCellRenderer,
+        HeaderRenderer,
     }];
     const rows = [{
         chargeCode: "1234AB",
@@ -123,7 +170,7 @@ const ActiveEngagements = function () {
                             })}
                         </div>
                         <div className="active-engagements-container">
-                            <Typography className="active-engagements-title">Active Engagements</Typography>
+                            <Typography type={DISPLAY_SIX} mobile>Active Engagements</Typography>
                             <Table
                                 className="active-engagements-table"
                                 dark={false} columns={columns}
