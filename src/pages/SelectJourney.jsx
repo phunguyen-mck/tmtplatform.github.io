@@ -29,8 +29,10 @@ import {
   ORG_STAKEHOLDERS_TAB,
 } from '../constant/tabsMapObject';
 
+import DealInfo from './JourneySetup/DealInfo';
+
 export default function SelectJourney() {
-  const [value, setValue] = React.useState(0);
+  const [value, setValue] = React.useState(PAST_DEAL_TAB);
 
   const handleTabChange = (event, newValue) => {
     setValue(newValue);
@@ -106,7 +108,7 @@ export default function SelectJourney() {
     }
 
     if (value === PAST_DEAL_TAB) {
-      return <div>hello</div>;
+      return <DealInfo />;
     }
     return <span>Placeholder</span>;
   };
