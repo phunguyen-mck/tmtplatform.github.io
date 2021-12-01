@@ -1,3 +1,7 @@
+.ActiveEngagements {
+  padding: 30px 20px;
+}
+
 .engagement-container {
   padding: 18px;
   background: #FFFFFF 0 0 no-repeat padding-box;
@@ -37,5 +41,38 @@
       color: #3C96B4;
       margin-top: 8px;
     }
+  }
+}
+
+.active-engagements-container {
+  flex-grow: 1;
+  margin-left: 32px;
+
+  .active-engagements-title {
+    font: normal normal bold 28px/16px Bower;
+    color: #051C2C;
+  }
+
+  .active-engagements-table {
+    margin-top: 38px;
+  }
+
+  .header-cell {
+    font: normal normal medium 16px/17px McKinsey Sans;
+    color: #000000;
+  }
+
+  .ReactVirtualized__Table__headerRow {
+    border-bottom: 2px solid #000000;
+  }
+
+  .code-cell {
+    font: normal normal normal 18px/20px McKinsey Sans;
+    color: #2251FF;
+  }
+
+  .text-cell {
+    font: normal normal normal 18px/20px McKinsey Sans;
+    color: #000000;
   }
 }

@@ -3,7 +3,7 @@ import React from 'react';
 import './ActiveEngagement.scss'
 import _ from 'lodash';
 import {
-    Container, DISPLAY_SIX, Grid, HEADING_SIX, Icon, Input, Table, ThemeProvider, TYPE_OUTLINE, Typography,
+    Container, Grid, HEADING_SIX, Icon, Input, Table, ThemeProvider, TYPE_OUTLINE, Typography,
 } from '@mds/mds-reactjs-library';
 
 
@@ -27,8 +27,24 @@ const EngagementCard = function (props) {
     </div>);
 }
 
+const CodeCellRenderer = args => {
+    const {value} = args;
+    return (<div className="code-cell">{value}</div>);
+};
+
+const TextCellRenderer = args => {
+    const {value} = args;
+    return (<div className="text-cell">{value}</div>);
+};
+
+
+const HeaderRenderer = args => {
+    const {columnData} = args;
+    return (<div className="header-cell">{columnData.label}</div>);
+}
 
 const ActiveEngagements = function () {
+
 
     const engagements = [{
         companyName: "Company A", code: "1234AB", status: "Completed",
@@ -40,12 +56,61 @@ const ActiveEngagements = function () {
         companyName: "Company A", code: "1234AB", status: "Completed",
     }]
 
-    const columns = [{dataKey: 'name', label: 'Name', width: 100, sortable: true}, {
-        dataKey: 'surname', label: 'Surname', width: 100, flexGrow: true
-    }, {dataKey: 'age', label: 'Age', width: 100, flexGrow: true},];
-    const rows = [{name: 'John', surname: 'Lennon', age: 40}, {name: 'Paul', surname: 'McCartney', age: 38},];
+    const columns = [{
+        dataKey: 'chargeCode', label: 'Charge code', width: 120, CellRenderer: CodeCellRenderer, HeaderRenderer,
+    }, {
+        dataKey: 'client', label: 'Client', width: 100, flexGrow: true, CellRenderer: TextCellRenderer, HeaderRenderer,
+    }, {
+        dataKey: 'projectName',
+        label: 'Project name',
+        width: 100,
+        flexGrow: true,
+        CellRenderer: TextCellRenderer,
+        HeaderRenderer,
+    }, {
+        dataKey: 'requestor',
+        label: 'Requestor',
+        width: 100,
+        flexGrow: true,
+        CellRenderer: TextCellRenderer,
+        HeaderRenderer,
+    }, {
+        dataKey: 'stage', label: 'Stage', width: 100, flexGrow: true, CellRenderer: TextCellRenderer, HeaderRenderer,
+    }, {
+        dataKey: 'status', label: 'Status', width: 100, CellRenderer: TextCellRenderer, HeaderRenderer,
+    }];
+    const rows = [{
+        chargeCode: "1234AB",
+        client: "TechM",
+        projectName: "E2E growth diagnostic",
+        requestor: "Saurabh",
+        stage: "New project creation",
+        status: 39,
+    }, {
+        chargeCode: "1234AB",
+        client: "TechM",
+        projectName: "E2E growth diagnostic",
+        requestor: "Saurabh",
+        stage: "New project creation",
+        status: 39,
+    }, {
+        chargeCode: "1234AB",
+        client: "TechM",
+        projectName: "E2E growth diagnostic",
+        requestor: "Saurabh",
+        stage: "New project creation",
+        status: 39,
+    }];
 
-    return (<ThemeProvider className="ActiveEngagements">
+    return (<ThemeProvider customTheme={{
+        table: {
+            rowBgColor: '#FFFFFF',
+            rowBorderBottom: '#D0D0D0',
+            cellTextColor: '#000000',
+            lightHeaderTextColor: '#000000',
+            lightHeaderBgColor: '#FFFFFF',
+        }
+    }}>
         <Container responsive>
             <Grid container style={{height: '100vh'}}>
                 <Grid item span={12}>
@@ -57,9 +122,16 @@ const ActiveEngagements = function () {
                                 return <EngagementCard engagement={engagement}/>
                             })}
                         </div>
-                        <div style={{flexGrow: 1}}>
-                            <Typography type={DISPLAY_SIX} mobile>Active Engagements</Typography>
-                            <Table className="mt-4" responsive columns={columns} rows={rows}/>
+                        <div className="active-engagements-container">
+                            <Typography className="active-engagements-title">Active Engagements</Typography>
+                            <Table
+                                className="active-engagements-table"
+                                dark={false} columns={columns}
+                                striped={false}
+                                rows={rows}
+                                rowHeight={80}
+                                height={"auto"}
+                            />
                         </div>
                     </div>
                 </Grid>
