@@ -17,6 +17,7 @@ import "./SelectJourney.css";
 import { createTheme, ThemeProvider } from '@mui/material';
 
 import TopOfferingContent from './TopOfferingContent';
+import DigitalPayment from "../components/SelectJourney/DigitalPayment";
 import Sticky from "react-sticky-el";
 import IndustryTabs from "../components/Tabs/Tabs";
 import {
@@ -98,7 +99,8 @@ export default function SelectJourney() {
           <Typography className="cardHeading" type={BODY_DEFAULT} tablet>
           Industry specific offerings
         </Typography>
-      <TopOfferingContent/>
+        {/* <TopOfferingContent />  use later*/ }
+      <DigitalPayment/>
       </>
         )
       }
