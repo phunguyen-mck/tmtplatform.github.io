@@ -1,6 +1,8 @@
 import React from 'react';
 import { ThemeProvider } from '@mds/mds-reactjs-library';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import ActiveEngagements from './ActiveEngagements';
+
 
 import JourneyPage from './pages/Journey';
 import StrategyHubPage from './pages/StrategyHub';
@@ -32,6 +34,7 @@ function App() {
             element={<SelectJourney />}
           />
           <Route path="/test" element={<TestPage />} />
+          <Route path="/active-engagements" element={<ActiveEngagements />} />
         </Routes>
       </BrowserRouter>
     </ThemeProvider>

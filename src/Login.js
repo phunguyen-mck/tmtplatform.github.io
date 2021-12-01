@@ -1,32 +1,27 @@
 import './mck-bootstrap.min.css';
 import './Login.css';
 import React from 'react';
-import styled from '@emotion/styled';
 import {
-  ThemeProvider,
-  ThemeContext,
-  Container,
-  Grid,
-  Image,
-  Input,
   Box,
-  Tag,
-  Typography,
-  FormElementWrapper,
-  SIZE_LARGE,
-  DISPLAY_SIX,
   Button,
-  Spacer,
+  Container,
+  DISPLAY_SIX,
+  FormElementWrapper,
+  Grid,
   Icon,
-  SECONDARY_BUTTON,
+  Input,
   PRIMARY_BUTTON,
-  TYPE_GLYPH,
+  SECONDARY_BUTTON,
+  SIZE_LARGE,
+  ThemeContext,
+  ThemeProvider,
   TYPE_OUTLINE,
-  
+  Typography,
 } from '@mds/mds-reactjs-library';
 import img from './images/download.png';
 import Single01Icon from '@mds/mds-icons/icons/svg/outline-16-single-01.svg';
 import PadlockIcon from '@mds/mds-icons/icons/svg/outline-16-padlock.svg';
+import {useNavigate} from "react-router-dom";
 
 
 const GroupedInput = function (props) {
@@ -45,11 +40,7 @@ const GroupedInput = function (props) {
 
 const Login = function () {
   const theme = React.useContext(ThemeContext);
-
-  const Spacer = styled.div`
-    width: 100%;
-    height: 16px;
-  `;
+  let navigate = useNavigate();
 
   return (
     <ThemeProvider className="login">
@@ -93,6 +84,9 @@ const Login = function () {
                     style={{
                       width: '114px',
                       marginLeft: '20px',
+                    }}
+                    onClick={() => {
+                      navigate('/active-engagements')
                     }}
                   >
                     Login
