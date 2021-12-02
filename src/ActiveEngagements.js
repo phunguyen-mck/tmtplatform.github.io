@@ -20,6 +20,7 @@ import {
   SECONDARY_BUTTON,
   Icon,
   TYPE_OUTLINE,
+  PRIMARY_BUTTON,
 } from '@mds/mds-reactjs-library';
 
 Chart.register(ArcElement);
@@ -253,11 +254,12 @@ const ActiveEngagements = function () {
                   return <EngagementCard engagement={engagement} />;
                 })}
               </div>
-              <div className="active-engagements-container">
+              <div className="active-engagements-container d-flex flex-column">
                 <Typography type={DISPLAY_SIX} mobile>
                   Active Engagements
                 </Typography>
                 <Table
+                  responsive
                   className="active-engagements-table"
                   dark={false}
                   columns={columns}
@@ -266,6 +268,17 @@ const ActiveEngagements = function () {
                   rowHeight={80}
                   height={'auto'}
                 />
+                <div className="mt-auto d-flex justify-content-center">
+                  <Button
+                    className="rounded-button"
+                    appearance={PRIMARY_BUTTON}
+                    onClick={() => {
+                      navigate('/project/create');
+                    }}
+                  >
+                    Create new project
+                  </Button>
+                </div>
               </div>
             </div>
           </Grid>
