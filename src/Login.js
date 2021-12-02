@@ -18,10 +18,13 @@ import {
   TYPE_OUTLINE,
   Typography,
 } from '@mds/mds-reactjs-library';
-import img from './images/download.png';
+import backgroundImg from './images/login-background.png';
+import logoImg from './images/mckinseylogo.svg';
+import projectLogoImg from './images/projectlogo.svg';
 import Single01Icon from '@mds/mds-icons/icons/svg/outline-16-single-01.svg';
 import PadlockIcon from '@mds/mds-icons/icons/svg/outline-16-padlock.svg';
 import { useNavigate } from 'react-router-dom';
+import styled from '@emotion/styled';
 
 const GroupedInput = function (props) {
   return (
@@ -45,19 +48,34 @@ const Login = function () {
   const theme = React.useContext(ThemeContext);
   let navigate = useNavigate();
 
+  const BackgroundDiv = styled.div`
+    background-image: url(${backgroundImg});
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100%;
+  `;
+  const Logo = styled.img`
+    width: 150px;
+    position: absolute;
+    top: 45px;
+    left: 34px;
+  `;
+
+  const ProjectLogo = styled.img`
+    width: 300px;
+    position: absolute;
+    top: 40%;
+    left: 12%;
+  `;
   return (
     <ThemeProvider className="login">
-      <Container responsive>
+      <Container>
         <Grid container style={{ height: '100vh' }}>
           <Grid item span={6}>
-            <div
-              style={{
-                backgroundImage: `url(${img})`,
-                backgroundSize: 'contain',
-                backgroundRepeat: 'no-repeat',
-                height: '100%',
-              }}
-            />
+            <BackgroundDiv>
+              <Logo src={logoImg} />
+              <ProjectLogo src={projectLogoImg} />
+            </BackgroundDiv>
           </Grid>
           <Grid item span={6} style={{ height: '100%' }}>
             <Box alignHor alignVert style={{ height: '100%' }}>
@@ -84,7 +102,7 @@ const Login = function () {
                     iconSrc: PadlockIcon,
                     placeholder: 'Enter your password',
                   }}
-                ></FormElementWrapper>
+                />
                 <Box alignHor className="mt-4">
                   <Button
                     className="rounded-button"
