@@ -242,8 +242,8 @@ const ActiveEngagements = function () {
         },
       }}
     >
-      <Container responsive>
-        <Grid container className="pt-sm-6 px-4">
+      <Container>
+        <Grid container className="pt-sm-6 px-sm-2 px-md-4">
           <Grid item span={12}>
             <div className="d-flex flex-row">
               <div className="engagement-container">
