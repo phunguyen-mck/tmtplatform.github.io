@@ -4,10 +4,7 @@ import { Typography, Grid, Icon } from '@mds/mds-reactjs-library';
 
 import styled from '@emotion/styled';
 
-import ArrowRight from '@mds/mds-icons/icons/svg/outline-16-arrow-right.svg';
-
 import useThemeColorMapping from 'hooks/useThemeColorMapping';
-import { navigateToJourneySetupPage } from 'lib/navigators';
 
 const StyledCard = styled.div`
   width: 400px;
