@@ -2,20 +2,16 @@ import './mck-bootstrap.min.css';
 import React from 'react';
 import styled from '@emotion/styled/macro';
 
-import {
-  Container,
-  Grid,
-  Icon,
-  ThemeProvider,
-  TYPE_OUTLINE,
-} from '@mds/mds-reactjs-library';
-import ArrowLeft from '@mds/mds-icons/icons/svg/outline-48-arrow-left.svg';
+import { Box, Container, Icon, TYPE_OUTLINE } from '@mds/mds-reactjs-library';
+import ArrowLeft from './images/arrow-left.svg';
 import Account from './images/account.svg';
 import Deals from './images/deals.svg';
 import ServiceLines from './images/service-lines.svg';
 import Alliances from './images/alliances.svg';
 import Org from './images/org.svg';
 import CapabilityBuilding from './images/capability-building.svg';
+import { useNavigate } from 'react-router-dom';
+import { ThemeProvider } from '@mui/material';
 
 const UnitOfPerformanceCard = function (props) {
   const IconContainer = styled.div`
@@ -80,36 +76,44 @@ const UnitOfPerformanceCard = function (props) {
 };
 
 const SelectUnitOfPerformance = function () {
+  const navigate = useNavigate();
+  const Title = styled.div`
+    font: normal normal bold 28px/29px Bower;
+    color: #000000;
+  `;
   return (
     <ThemeProvider>
-      <Container>
-        <Grid container className="pt-sm-6 px-sm-2 px-md-4">
-          <Grid item span={12}>
-            <div className="d-flex flex-column align-content-center">
-              <div>
-                <Icon size={16} type={TYPE_OUTLINE} src={ArrowLeft} />
-              </div>
-              <div>Select units of performance</div>
-              <div className="d-flex flex-row">
-                <UnitOfPerformanceCard name={'Account'} iconSrc={Account} />
-                <UnitOfPerformanceCard name={'Deals'} iconSrc={Deals} />
-                <UnitOfPerformanceCard
-                  name={'Service Lines'}
-                  iconSrc={ServiceLines}
-                />
-              </div>
-              <div className="d-flex flex-row mt-4">
-                <UnitOfPerformanceCard name={'Alliances'} iconSrc={Alliances} />
-                <UnitOfPerformanceCard name={'Org and people'} iconSrc={Org} />
-                <UnitOfPerformanceCard
-                  name={'Capability building'}
-                  iconSrc={CapabilityBuilding}
-                />
-              </div>
-            </div>
-          </Grid>
-        </Grid>
-      </Container>
+      <Box alignHor={true}>
+        <div className="d-flex flex-column pt-sm-2 pt-md-4">
+          <div>
+            <Icon
+              size={16}
+              type={TYPE_OUTLINE}
+              src={ArrowLeft}
+              onClick={() => {
+                navigate('/active-engagements');
+              }}
+            />
+          </div>
+          <Title className="mt-3">Select units of performance</Title>
+          <div className="d-flex flex-row mt-5">
+            <UnitOfPerformanceCard name={'Account'} iconSrc={Account} />
+            <UnitOfPerformanceCard name={'Deals'} iconSrc={Deals} />
+            <UnitOfPerformanceCard
+              name={'Service Lines'}
+              iconSrc={ServiceLines}
+            />
+          </div>
+          <div className="d-flex flex-row mt-4">
+            <UnitOfPerformanceCard name={'Alliances'} iconSrc={Alliances} />
+            <UnitOfPerformanceCard name={'Org and people'} iconSrc={Org} />
+            <UnitOfPerformanceCard
+              name={'Capability building'}
+              iconSrc={CapabilityBuilding}
+            />
+          </div>
+        </div>
+      </Box>
     </ThemeProvider>
   );
 };
