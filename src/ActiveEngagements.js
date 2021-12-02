@@ -4,6 +4,8 @@ import './ActiveEngagement.scss';
 import _ from 'lodash';
 import { ArcElement, Chart } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
+import styled from '@emotion/styled';
+import DownloadFile from '@mds/mds-icons/icons/svg/outline-16-data-download.svg';
 
 import {
   Container,
@@ -13,6 +15,11 @@ import {
   Table,
   ThemeProvider,
   Typography,
+  Button,
+  SIZE_SMALL,
+  SECONDARY_BUTTON,
+  Icon,
+  TYPE_OUTLINE,
 } from '@mds/mds-reactjs-library';
 
 Chart.register(ArcElement);
@@ -22,13 +29,13 @@ const StatusTag = function (props) {
     case 'completed':
       type = 'completed';
       break;
-    case 'inprogress':
-      type = 'inprogress';
+    case 'beingprocessed':
+      type = 'beingprocessed';
       break;
     default:
       break;
   }
-  return <div className={`status-tag ${props.type}`}>{props.value}</div>;
+  return <div className={`status-tag ${type}`}>{props.value}</div>;
 };
 
 const EngagementCard = function (props) {
@@ -37,7 +44,7 @@ const EngagementCard = function (props) {
     <div className="engagement-card">
       <div className="engagement-code">{engagement.code}</div>
       <div className="engagement-company-name">{engagement.companyName}</div>
-      <StatusTag value={engagement.status} type={'inprogress'}></StatusTag>
+      <StatusTag value={engagement.status} type={'completed'}></StatusTag>
     </div>
   );
 };
@@ -59,13 +66,12 @@ const StatusCellRenderer = (args) => {
     labels: ['Done', 'NotDone'],
     datasets: [
       {
-        data: [39, 61],
+        data: [value, 100 - value],
         backgroundColor: ['#3C96B4', '#E6E6E6'],
         hoverOffset: 4,
       },
     ],
   };
-
   const plugins = [
     {
       beforeDraw: function (chart) {
@@ -83,20 +89,45 @@ const StatusCellRenderer = (args) => {
     },
   ];
 
+  const ButtonStyled = styled(Button)`
+    border-radius: 3px;
+  `;
+  const downloadIcon = (
+    <Icon size={16} type={TYPE_OUTLINE} src={DownloadFile} />
+  );
+
   return (
-    <div className="status-cell d-flex flex-row align-items-center">
-      <div className="canvas-container">
-        <Doughnut
-          data={data}
-          options={{
-            animation: false,
-            cutout: 28,
-            radius: 30,
-          }}
-          plugins={plugins}
-        />
-      </div>
-      <StatusTag value={'In progress'} type={'inprogress'}></StatusTag>
+    <div className="status-cell">
+      {value < 100 && (
+        <div className="d-flex flex-row align-items-center">
+          <div className="canvas-container">
+            <Doughnut
+              data={data}
+              options={{
+                animation: false,
+                cutout: 28,
+                radius: 30,
+              }}
+              plugins={plugins}
+            />
+          </div>
+          <StatusTag
+            value={'Being processed'}
+            type={'beingprocessed'}
+          ></StatusTag>
+        </div>
+      )}
+      {value == 100 && (
+        <div className="p-1">
+          <ButtonStyled
+            size={SIZE_SMALL}
+            appearance={SECONDARY_BUTTON}
+            startIcon={downloadIcon}
+          >
+            Download File
+          </ButtonStyled>
+        </div>
+      )}
     </div>
   );
 };
@@ -139,16 +170,16 @@ const ActiveEngagements = function () {
       HeaderRenderer,
     },
     {
-      dataKey: 'client',
-      label: 'Client',
+      dataKey: 'accountName',
+      label: 'Account Name',
       width: 100,
       flexGrow: true,
       CellRenderer: TextCellRenderer,
       HeaderRenderer,
     },
     {
-      dataKey: 'projectName',
-      label: 'Project name',
+      dataKey: 'status',
+      label: 'Status',
       width: 100,
       flexGrow: true,
       CellRenderer: TextCellRenderer,
@@ -163,17 +194,17 @@ const ActiveEngagements = function () {
       HeaderRenderer,
     },
     {
-      dataKey: 'stage',
-      label: 'Stage',
+      dataKey: 'journey',
+      label: 'Journey',
       width: 100,
       flexGrow: true,
       CellRenderer: TextCellRenderer,
       HeaderRenderer,
     },
     {
-      dataKey: 'status',
-      label: 'Status',
-      width: 100,
+      dataKey: 'result',
+      label: 'Result',
+      width: 120,
       flexGrow: true,
       CellRenderer: StatusCellRenderer,
       HeaderRenderer,
@@ -182,27 +213,19 @@ const ActiveEngagements = function () {
   const rows = [
     {
       chargeCode: '1234AB',
-      client: 'TechM',
-      projectName: 'E2E growth diagnostic',
-      requestor: 'Saurabh',
-      stage: 'New project creation',
-      status: 39,
+      accountName: 'Mastercard',
+      status: 'Open',
+      requestor: 'Anshul',
+      journey: 'Account selection',
+      result: 50,
     },
     {
-      chargeCode: '1234AB',
-      client: 'TechM',
-      projectName: 'E2E growth diagnostic',
-      requestor: 'Saurabh',
-      stage: 'New project creation',
-      status: 39,
-    },
-    {
-      chargeCode: '1234AB',
-      client: 'TechM',
-      projectName: 'E2E growth diagnostic',
-      requestor: 'Saurabh',
-      stage: 'New project creation',
-      status: 39,
+      chargeCode: '1234AD',
+      accountName: 'Morgan Stanley',
+      status: 'Closed',
+      requestor: 'Abhishree',
+      journey: 'Account selection',
+      result: 100,
     },
   ];
 

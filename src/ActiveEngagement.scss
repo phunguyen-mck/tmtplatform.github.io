@@ -39,11 +39,19 @@
 
 .status-tag {
   display: inline-block;
-  background: #3C96B41A;
   border-radius: 2px;
   padding: 3px 9px;
   font: normal normal normal 8px/16px McKinsey Sans;
-  color: #3C96B4;
+
+  &.completed {
+    background: #3C96B41A;
+    color: #3C96B4;
+  }
+
+  &.beingprocessed {
+    background: #FAA0821A;
+    color: #FAA082;
+  }
 }
 
 .active-engagements-container {
@@ -58,7 +66,6 @@
   .active-engagements-table {
     margin-top: 38px;
   }
-
 
   .header-cell {
     font: normal normal 500 16px/17px McKinsey Sans;
