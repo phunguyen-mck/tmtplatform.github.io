@@ -12,6 +12,7 @@ import Login from './Login';
 import SelectJourney from './pages/SelectJourney';
 import HeaderComponent from './components/layout/Header';
 import TestPage from './TestPage';
+import SelectUnitOfPerformance from './SelectUnitOfPerformance';
 function App() {
   return (
     <ThemeProvider>
@@ -34,6 +35,11 @@ function App() {
           />
           <Route path="/test" element={<TestPage />} />
           <Route path="/active-engagements" element={<ActiveEngagements />} />
+          <Route path="/active-engagements" element={<ActiveEngagements />} />
+          <Route
+            path="/unit-of-performance"
+            element={<SelectUnitOfPerformance />}
+          />
         </Routes>
       </BrowserRouter>
     </ThemeProvider>

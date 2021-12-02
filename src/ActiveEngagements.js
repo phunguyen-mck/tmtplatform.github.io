@@ -6,6 +6,7 @@ import { ArcElement, Chart } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
 import styled from '@emotion/styled';
 import DownloadFile from '@mds/mds-icons/icons/svg/outline-16-data-download.svg';
+import { useNavigate } from 'react-router-dom';
 
 import {
   Container,
@@ -139,6 +140,7 @@ const HeaderRenderer = (args) => {
 };
 
 const ActiveEngagements = function () {
+  const navigate = useNavigate();
   const engagements = [
     {
       companyName: 'Company A',
@@ -273,7 +275,7 @@ const ActiveEngagements = function () {
                     className="rounded-button"
                     appearance={PRIMARY_BUTTON}
                     onClick={() => {
-                      navigate('/project/create');
+                      navigate('/unit-of-performance');
                     }}
                   >
                     Create new project
