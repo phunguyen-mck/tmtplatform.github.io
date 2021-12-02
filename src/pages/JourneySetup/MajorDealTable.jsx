@@ -30,50 +30,12 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   opacity: 1,
 }));
 
-function createData(theme, client, itsProvider, tvs, startYear, duration) {
-  return { theme, client, itsProvider, tvs, startYear, duration };
-}
-
-const rows = [
-  createData(
-    'Retail - Core banking platform',
-    "Williams & Glyn's",
-    'Infosys',
-    267.08,
-    2013,
-    5
-  ),
-  createData(
-    'Cap markets - Digital trading',
-    'Royal Bank of Scotland',
-    'Infosys',
-    267.08,
-    2012,
-    3
-  ),
-  createData(
-    'CIB - Customer journey',
-    'SIX Telekurs AG',
-    'Atos',
-    267.08,
-    2011,
-    3
-  ),
-  createData(
-    'Retail - Digital bank transformation',
-    'Grupo Financiero Banorte Ixe S. A.',
-    'IBM',
-    534.16,
-    2014,
-    4
-  ),
-];
-
 const HeaderCell = ({ children, ...props }) => {
   const InnerWrapper = estyled.div`
     display: flex;
     justify-content: space-between;
   `;
+
   return (
     <StyledTableCell {...props}>
       <InnerWrapper>
@@ -84,7 +46,7 @@ const HeaderCell = ({ children, ...props }) => {
   );
 };
 
-export default function CustomizedTables() {
+export default function MajorDealTable({ majorDeals }) {
   return (
     <TableContainer component="div">
       <Table sx={{ minWidth: 700 }} aria-label="customized table">
@@ -102,7 +64,7 @@ export default function CustomizedTables() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row, index) => (
+          {majorDeals.map((row, index) => (
             <React.Fragment>
               {index !== 0 && (
                 <TableRow>
