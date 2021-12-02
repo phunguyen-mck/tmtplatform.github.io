@@ -32,6 +32,7 @@ import { industryTabLabels } from '../constant/TabLabels';
 
 import DealInfo from './JourneySetup/DealInfo';
 import PeerMajorDealInfo from './JourneySetup/PeerMajorDealInfo';
+import ITSpendInfo from './JourneySetup/ITSpendInfo';
 
 export default function SelectJourney() {
   const [value, setValue] = React.useState(0);
@@ -121,6 +122,10 @@ export default function SelectJourney() {
     }
     if (value === MAJOR_DEALS_TAB) {
       return <PeerMajorDealInfo />;
+    }
+
+    if (value === IT_SPEND_MAP) {
+      return <ITSpendInfo />;
     }
     return <span>Placeholder</span>;
   };
