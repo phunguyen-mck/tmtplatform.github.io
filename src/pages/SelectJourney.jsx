@@ -30,9 +30,10 @@ import {
 } from '../constant/tabsMapObject';
 
 import DealInfo from './JourneySetup/DealInfo';
+import PeerMajorDealInfo from './JourneySetup/PeerMajorDealInfo';
 
 export default function SelectJourney() {
-  const [value, setValue] = React.useState(PAST_DEAL_TAB);
+  const [value, setValue] = React.useState(MAJOR_DEALS_TAB);
 
   const handleTabChange = (event, newValue) => {
     setValue(newValue);
@@ -109,6 +110,10 @@ export default function SelectJourney() {
 
     if (value === PAST_DEAL_TAB) {
       return <DealInfo />;
+    }
+
+    if (value === MAJOR_DEALS_TAB) {
+      return <PeerMajorDealInfo />;
     }
     return <span>Placeholder</span>;
   };
