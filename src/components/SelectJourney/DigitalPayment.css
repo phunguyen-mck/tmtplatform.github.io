@@ -1,0 +1,133 @@
+.box-container-api {
+    background-color: #39BDF3 !important;
+    border-radius: 10px;
+    text-align: center;
+    max-width: 300px;
+}
+.box-container-pm {
+    background-color: #71D2F1 !important;;
+    border-radius: 10px;
+    text-align: center;
+    max-width: 300px;
+}
+.box-container-automation {
+    background-color: #027AB1 !important;;
+    border-radius: 10px;
+    text-align: center;
+    max-width: 300px;
+}
+.box-container-ts {
+    background-color: #AAE6F0 !important;;
+    border-radius: 10px;
+    text-align: center;
+    max-width: 300px;
+}
+.box-container-compliance {
+    background-color: #C4EEF4 !important;;
+    border-radius: 10px;
+    text-align: center;
+    max-width: 300px;
+}
+.box-container {
+    background-color: #024B6F !important;;
+    border-radius: 10px;
+    max-width: 300px;
+    text-align: center;
+}
+.box-container-cloud {
+    background-color: #024B6F !important;;
+    border-radius: 10px;
+    text-align: center;
+    max-width: 300px;
+}
+.box-content{
+    width: 100%;
+    position: relative;
+    padding: 0.5rem;
+    height: 46px;
+    color: white;
+    font-weight: 600;
+font-size: 18px;
+}
+.box-content-black-text{
+    width: 100%;
+    position: relative;
+    padding: 0.5rem;
+    height: 46px;
+    color: black;
+    font-weight: 500;
+font-size: 18px;
+}
+.icon-container{
+    position: absolute;
+    right: 10px;
+    font-size: 10px !important;
+}
+
+.wrapper{
+}
+.wrapper-grid {
+    position: relative;
+}
+.free-flow-text{
+    position: absolute;
+    top: 200px;
+    left:-60px;
+    transform: rotate(-90deg);
+    font-weight: 600;
+
+}
+.box-grey{
+background: #F0F0F0 0% 0% no-repeat padding-box;
+border-radius: 8px;
+padding: 1rem;
+max-width: 339px ;
+
+}
+.box-grey p {
+    color: #000000;
+    font-weight: 550;
+    line-height: 0.2 !important;
+}
+.box-grey span {
+    font-size: 14px;
+    color: #000000;
+    font-weight: 550;
+}
+.table-container{
+    display: flex;
+}
+.profile-with-black{
+    display: flex;
+    flex-direction: column;
+    flex: 0 0 40%;
+}
+.icon-margin {
+    margin-right: 1rem;
+}
+.profile-with-grey{
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+.profile-container-column{
+    display: flex;
+    flex-direction: column;
+}
+.profile-container p{
+    line-height: 0.5;
+}
+.title-container{
+    margin-top: 1rem;
+}
+.table-wrapper{
+    border: 1px solid #707070;
+    background: #FFFFFF;
+    border-radius: 4px;
+    padding: 1rem;
+}
+.break-line{
+    border-top: 3px solid #e6e6e6 !important;
+}

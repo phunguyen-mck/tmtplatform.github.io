@@ -3,14 +3,14 @@ import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
 import classnames from "classnames";
 import {offeringMockDetails,crossCuttingOffering} from "../constant/mockTopOffering";
 import { styled } from "@mui/material/styles";
 import Grid from "@mui/material/Grid";
+import { Typography, BODY_DEFAULT } from '@mds/mds-reactjs-library';
+import css from "./SelectJourney.css"
 
-
-export default function TopOfferingContent() {
+export default function TopOfferingContent({setDashboardTitle,setSelectedCardOffering}) {
 const [cardActiveIndex,setCardActiveIndex] = React.useState(0);
   const renderCardPercentageValue = (value) => {
     if (value === 15) {
@@ -20,18 +20,23 @@ const [cardActiveIndex,setCardActiveIndex] = React.useState(0);
     }
     return <span>10-15%</span>;
   };
-  const handleActiveCard =(index) =>{
+  const handleActiveCard =(index,title) =>{
       setCardActiveIndex(index)
+      setDashboardTitle(title)
+      setSelectedCardOffering(index)
   }
   return (
       <div>
+          <Typography className="cardHeading" type={BODY_DEFAULT} tablet>
+          Industry specific offerings
+        </Typography>
       <Grid container item spacing={1}>
       <Grid container item spacing={3}>
 
         {offeringMockDetails.map((offer, index) => {
           return (
               <Grid item xs={3}>
-                  <Card className={cardActiveIndex===offer.id ?  "activeCard" : "card"} onClick={()=>handleActiveCard(offer.id)} sx={{ maxWidth: "400px" }}>
+                  <Card className={cardActiveIndex===offer.id ?  "activeCard" : "card"} onClick={()=>handleActiveCard(offer.id,offer.title)} sx={{ maxWidth: "400px" }}>
                     <CardContent className="cardContentContainer">
                       <Typography sx={{ fontSize: 16 }} gutterBottom>
                         <strong>{offer.title}</strong>

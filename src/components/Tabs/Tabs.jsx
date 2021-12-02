@@ -3,7 +3,7 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import CheckCircleOutlinedIcon from '@mui/icons-material/CheckCircleOutlined';
 import "./Tabs.css";
-export default function IndustryTabs({tabIndex,handleOnChange}) {
+export default function IndustryTabs({tabIndex,handleOnChange,handleTabClick}) {
     const tabLabels = [
         {
           id: 1,
@@ -38,7 +38,7 @@ export default function IndustryTabs({tabIndex,handleOnChange}) {
       ];
     return (
         <div>
-         <Tabs value={tabIndex} onChange={handleOnChange} aria-label="icon label tabs example">   
+         <Tabs value={tabIndex} key={tabIndex} onChange={handleOnChange} onClick={()=>handleTabClick(tabIndex)} aria-label="icon label tabs example">   
         {tabLabels.map((tab,index)=>{
                   return <Tab className="tabStyle" icon={<CheckCircleOutlinedIcon />} label={tab.title} />
         })}

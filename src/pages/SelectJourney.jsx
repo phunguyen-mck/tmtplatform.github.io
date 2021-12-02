@@ -18,7 +18,6 @@ import { createTheme, ThemeProvider } from '@mui/material';
 
 import TopOfferingContent from './TopOfferingContent';
 import DigitalPayment from '../components/SelectJourney/DigitalPayment';
-import Sticky from 'react-sticky-el';
 import IndustryTabs from '../components/Tabs/Tabs';
 import {
   OVERALL_FINANCIAL_TAB,
@@ -33,10 +32,16 @@ import DealInfo from './JourneySetup/DealInfo';
 import PeerMajorDealInfo from './JourneySetup/PeerMajorDealInfo';
 
 export default function SelectJourney() {
-  const [value, setValue] = React.useState(MAJOR_DEALS_TAB);
-
+  const [value, setValue] = React.useState(0);
+  const [dashboardTitle, setDashboardTitle] = React.useState('');
+  const [selectedCardOffering, setSelectedCardOffering] = React.useState(0);
   const handleTabChange = (event, newValue) => {
+    console.log('newValue', newValue);
     setValue(newValue);
+    setSelectedCardOffering(0);
+  };
+  const handleTabClick = (event, newValue) => {
+    setSelectedCardOffering(0);
   };
   const theme = createTheme({
     typography: {
@@ -99,15 +104,13 @@ export default function SelectJourney() {
     if (value === TOP_DIGITAL_OFFERING_TAB) {
       return (
         <>
-          <Typography className="cardHeading" type={BODY_DEFAULT} tablet>
-            Industry specific offerings
-          </Typography>
-          {/* <TopOfferingContent />  use later*/}
-          <DigitalPayment />
+          <TopOfferingContent
+            setDashboardTitle={setDashboardTitle}
+            setSelectedCardOffering={setSelectedCardOffering}
+          />
         </>
       );
     }
-
     if (value === PAST_DEAL_TAB) {
       return <DealInfo />;
     }
@@ -117,58 +120,54 @@ export default function SelectJourney() {
     }
     return <span>Placeholder</span>;
   };
+  const renderCardDetails = () => {
+    return <DigitalPayment title={dashboardTitle} />;
+  };
   return (
     <ThemeProvider theme={theme}>
-      <div className="container-tmp">
-        <div className="scroll-area">
-          <div className="block">
-            <FreeSpaceBackground>
-              <Sticky boundaryElement=".block" scrollElement=".scroll-area">
-                <Container>
-                  <ContainerContent>
-                    <IconContainer>
-                      <Icon name="arrow-left" type="glyph" size={16} />
-                    </IconContainer>
-                    <Breadcrumbs>
-                      <a href="#">Select units of performance</a>
-                      <a href="#">Select your journey </a>
-                    </Breadcrumbs>
-                  </ContainerContent>
-                  <ContentItemContainer>
-                    <div>
-                      Welcome to the{' '}
-                      <TextContainer>
-                        {' '}
-                        Account Strategy and Planning
-                      </TextContainer>{' '}
-                      hub for <TextContainer>Citibank</TextContainer>
-                    </div>
-                    <ButtonContainer>
-                      <ButtonStyled
-                        appearance={SECONDARY_BUTTON}
-                        endIcon={userIcon}
-                      >
-                        Slide deck{' '}
-                      </ButtonStyled>
-                      <StyledBadge
-                        type={BADGE_TYPE_INFORMATION_DEFAULT}
-                        size={SIZE_SMALL}
-                      >
-                        1
-                      </StyledBadge>
-                    </ButtonContainer>
-                  </ContentItemContainer>
-                </Container>
-                <IndustryTabs
-                  tabIndex={value}
-                  handleOnChange={handleTabChange}
-                />
-              </Sticky>
-            </FreeSpaceBackground>
-            <TabContentContainer>{renderTabContent()}</TabContentContainer>
-          </div>
+      <FreeSpaceBackground>
+        <Container>
+          <ContainerContent>
+            <IconContainer>
+              <Icon name="arrow-left" type="glyph" size={16} />
+            </IconContainer>
+            <Breadcrumbs>
+              <a href="#">Select units of performance</a>
+              <a href="#">Select your journey </a>
+            </Breadcrumbs>
+          </ContainerContent>
+          <ContentItemContainer>
+            <div>
+              Welcome to the{' '}
+              <TextContainer> Account Strategy and Planning</TextContainer> hub
+              for <TextContainer>Citibank</TextContainer>
+            </div>
+            <ButtonContainer>
+              <ButtonStyled appearance={SECONDARY_BUTTON} endIcon={userIcon}>
+                Slide deck{' '}
+              </ButtonStyled>
+              <StyledBadge
+                type={BADGE_TYPE_INFORMATION_DEFAULT}
+                size={SIZE_SMALL}
+              >
+                1
+              </StyledBadge>
+            </ButtonContainer>
+          </ContentItemContainer>
+        </Container>
+        <IndustryTabs
+          tabIndex={value}
+          handleOnChange={handleTabChange}
+          handleTabClick={handleTabClick}
+        />
+      </FreeSpaceBackground>
+      <TabContentContainer>
+        <div className="scrollable">
+          {selectedCardOffering === 0
+            ? renderTabContent()
+            : renderCardDetails()}
         </div>
-      </div>
+      </TabContentContainer>
     </ThemeProvider>
   );
 }

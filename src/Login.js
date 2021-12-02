@@ -21,8 +21,7 @@ import {
 import img from './images/download.png';
 import Single01Icon from '@mds/mds-icons/icons/svg/outline-16-single-01.svg';
 import PadlockIcon from '@mds/mds-icons/icons/svg/outline-16-padlock.svg';
-import {useNavigate} from "react-router-dom";
-
+import { useNavigate } from 'react-router-dom';
 
 const GroupedInput = function (props) {
   return (
@@ -32,11 +31,15 @@ const GroupedInput = function (props) {
           <Icon src={props.iconSrc} type={TYPE_OUTLINE} size={16} />
         </div>
       </div>
-      <Input type="text" className="form-control" id={props.id} placeholder={props.placeholder}/>
+      <Input
+        type="text"
+        className="form-control"
+        id={props.id}
+        placeholder={props.placeholder}
+      />
     </div>
-  )
-}
-
+  );
+};
 
 const Login = function () {
   const theme = React.useContext(ThemeContext);
@@ -67,26 +70,37 @@ const Login = function () {
                   size={SIZE_LARGE}
                   component={GroupedInput}
                   label="Username"
-                  inputProps={{ iconSrc:Single01Icon, placeholder: 'Enter your username' }}
+                  inputProps={{
+                    iconSrc: Single01Icon,
+                    placeholder: 'Enter your username',
+                  }}
                 />
                 <FormElementWrapper
                   className="mt-3"
                   size={SIZE_LARGE}
                   component={GroupedInput}
                   label="Password"
-                  inputProps={{ iconSrc:PadlockIcon, placeholder: 'Enter your password' }}
-                >
-                </FormElementWrapper>
+                  inputProps={{
+                    iconSrc: PadlockIcon,
+                    placeholder: 'Enter your password',
+                  }}
+                ></FormElementWrapper>
                 <Box alignHor className="mt-4">
-                  <Button className="rounded-button" appearance={SECONDARY_BUTTON}>SSO sign-in</Button>
-                  <Button className="rounded-button"
+                  <Button
+                    className="rounded-button"
+                    appearance={SECONDARY_BUTTON}
+                  >
+                    SSO sign-in
+                  </Button>
+                  <Button
+                    className="rounded-button"
                     appearance={PRIMARY_BUTTON}
                     style={{
                       width: '114px',
                       marginLeft: '20px',
                     }}
                     onClick={() => {
-                      navigate('/active-engagements')
+                      navigate('/active-engagements');
                     }}
                   >
                     Login

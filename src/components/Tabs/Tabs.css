@@ -1,4 +1,5 @@
 .tabStyle{
-    max-width: 200px !important;
+    max-width: 250px !important;
     font-size: 0.7rem !important;
+    flex: auto !important;
 }

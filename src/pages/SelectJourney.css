@@ -49,9 +49,9 @@
     color: lightblue;
     background: lightskyblue;
 }
-.cardContentContainer p{
-    min-height: 50px;
-    max-height: 56px;
+.cardContentContainer {
+    min-height: 88px;
+    max-height: 100px;
 }
 .cardContentContainer:hover > p{
     color: blue !important;
@@ -63,12 +63,13 @@
 .card:hover {
     cursor: pointer !important;
 }
-.container {
+.container-journey {
     position: relative;
     height: 100%;
     margin: auto;
+
   }
-  .container .scroll-area {
+  .container-journey  .scroll-area {
     height: 100%;
     overflow-y: scroll;
     position: relative;
@@ -87,4 +88,13 @@
   }
   .tabStyle {
       border-bottom: 1px solid white !important;
+  }
+  .scrollable {
+    height: 500px;
+    overflow: auto;
+    width: 100%;
+  }
+  .card{
+      min-height: 150px;
+      max-height: 150px;
   }
