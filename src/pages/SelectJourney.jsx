@@ -19,6 +19,7 @@ import { createTheme, ThemeProvider } from '@mui/material';
 import TopOfferingContent from './TopOfferingContent';
 import DigitalPayment from '../components/SelectJourney/DigitalPayment';
 import IndustryTabs from '../components/Tabs/Tabs';
+import OverallFinancial from './OverallFinancial';
 import {
   OVERALL_FINANCIAL_TAB,
   TOP_DIGITAL_OFFERING_TAB,
@@ -27,6 +28,7 @@ import {
   MAJOR_DEALS_TAB,
   ORG_STAKEHOLDERS_TAB,
 } from '../constant/tabsMapObject';
+import { industryTabLabels } from '../constant/TabLabels';
 
 import DealInfo from './JourneySetup/DealInfo';
 import PeerMajorDealInfo from './JourneySetup/PeerMajorDealInfo';
@@ -111,10 +113,12 @@ export default function SelectJourney() {
         </>
       );
     }
+    if (value == OVERALL_FINANCIAL_TAB) {
+      return <OverallFinancial />;
+    }
     if (value === PAST_DEAL_TAB) {
       return <DealInfo />;
     }
-
     if (value === MAJOR_DEALS_TAB) {
       return <PeerMajorDealInfo />;
     }
@@ -159,6 +163,8 @@ export default function SelectJourney() {
           tabIndex={value}
           handleOnChange={handleTabChange}
           handleTabClick={handleTabClick}
+          isWithIcon={true}
+          tabLabels={industryTabLabels}
         />
       </FreeSpaceBackground>
       <TabContentContainer>
