@@ -12,10 +12,25 @@ const StyledBar = styled.div`
   margin-right: 4px;
 `;
 const StyledRow = styled.div`
-  padding: 10px;
+  width: 100%;
   position: relative;
-  display: flex;
+  height: ${(prop) => prop.height}px;
 `;
+
+const StyledRowInner = styled.div`
+  position: absolute;
+  display: flex;
+  align-items: center;
+  font-size: 14;
+`;
+
+const StyledVerticalDivider = styled.div`
+  border: 1px solid #f0f0f0;
+  height: ${(prop) => prop.height}px;
+  position: absolute;
+  left: 50%;
+`;
+
 const reduceToGetMaxPointValue = (maxValue, pointValue) =>
   Math.max(maxValue, Math.abs(pointValue));
 
@@ -26,8 +41,9 @@ const getBarConfiguration =
     direction: pointValue >= 0 ? 'right' : 'left',
   });
 
-const Chart = ({ data, width }) => {
+const Chart = ({ data, width, rowHeight }) => {
   const { values, backgroundColors } = data;
+  const itemCount = values.length;
   const maxPointValue = useMemo(
     () => values.reduce(reduceToGetMaxPointValue, 0),
     []
@@ -37,46 +53,33 @@ const Chart = ({ data, width }) => {
     [maxPointValue, width]
   );
 
+  const renderRow = (pointValue, pointIndex) => {
+    const { width: barWidth, direction } = computeBarPosition(pointValue);
+    const style = {
+      ...(direction === 'right' ? { left: width / 2 } : {}),
+      ...(direction === 'left' ? { right: width / 2 } : {}),
+    };
+    let text = `${pointValue}%`;
+
+    return (
+      <StyledRow height={rowHeight} key={pointIndex}>
+        <StyledRowInner style={style}>
+          {direction === 'left' && text}
+          <StyledBar
+            width={barWidth}
+            backgroundColor={backgroundColors[pointIndex]}
+          />
+          {direction === 'right' && text}
+        </StyledRowInner>
+      </StyledRow>
+    );
+  };
+
   return (
     <div style={{ width: width }}>
       <div style={{ position: 'relative' }}>
-        <div
-          style={{
-            border: '1px solid #f0f0f0',
-            height: values.length * 34,
-            position: 'absolute',
-            left: width / 2 - 1,
-          }}
-        />
-        {values.map((value, index) => {
-          const { width: barWidth, direction } = computeBarPosition(value);
-          const pos = {
-            ...(direction === 'right' ? { left: width / 2 } : {}),
-            ...(direction === 'left' ? { right: width / 2 } : {}),
-          };
-          let tmp = `${value}%`;
-
-          return (
-            <div style={{ width: '100%', position: 'relative', height: 34 }}>
-              <div
-                style={{
-                  position: 'absolute',
-                  ...pos,
-                  display: 'flex',
-                  alignItems: 'center',
-                  fontSize: 14,
-                }}
-              >
-                {direction === 'left' && tmp}
-                <StyledBar
-                  width={barWidth}
-                  backgroundColor={backgroundColors[index]}
-                ></StyledBar>
-                {direction === 'right' && tmp}
-              </div>
-            </div>
-          );
-        })}
+        <StyledVerticalDivider height={rowHeight * itemCount} />
+        {values.map(renderRow)}
       </div>
     </div>
   );

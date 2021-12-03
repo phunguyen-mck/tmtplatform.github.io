@@ -35,6 +35,7 @@ const getDatasetDisplayName = (dataset) => dataset.displayName;
 const ChartWrapper = ({
   columnWidth: originalColumnWidth,
   spacing = 100,
+  rowHeight = 34,
 
   // data
   // Array<{ label: string, value: number }>
@@ -72,7 +73,7 @@ const ChartWrapper = ({
   const renderChart = (data) => (
     <Grid item key={data.name}>
       <Wrapper width={columnWidth}>
-        <BarChart data={data} width={columnWidth} />
+        <BarChart data={data} width={columnWidth} rowHeight={rowHeight} />
       </Wrapper>
     </Grid>
   );
@@ -96,7 +97,7 @@ const ChartWrapper = ({
       <div ref={containerRef}>
         <StyledGridWrapper container spacing={spacing}>
           <Grid item>
-            <ChartLegend labels={labels} />
+            <ChartLegend labels={labels} rowHeight={rowHeight} />
           </Grid>
           {datasets.map((data) => renderChart(data))}
         </StyledGridWrapper>
@@ -107,9 +108,9 @@ const ChartWrapper = ({
 
 export default ChartWrapper;
 
-const ChartLegend = ({ labels }) => {
+const ChartLegend = ({ labels, rowHeight }) => {
   const StyledLabel = styled.div`
-    height: 34px;
+    height: ${(prop) => prop.rowHeight}px;
     font-szie: 12;
     color: #7f7f7f;
     text-align: right;
@@ -117,7 +118,9 @@ const ChartLegend = ({ labels }) => {
   return (
     <React.Fragment>
       {labels.map((label) => (
-        <StyledLabel key={label}>{label}</StyledLabel>
+        <StyledLabel key={label} rowHeight={rowHeight}>
+          {label}
+        </StyledLabel>
       ))}
     </React.Fragment>
   );
