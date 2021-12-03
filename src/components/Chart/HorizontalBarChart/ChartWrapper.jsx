@@ -8,8 +8,8 @@ import React, {
 import styled from '@emotion/styled';
 import { Grid, useWindowResize } from '@mds/mds-reactjs-library';
 
-import BarChartByPercentage from './BarChartByPercentage';
-import BarChartByNumber from './BarChartByNumber';
+import BarChartTwoSide from './BarChartTwoSide';
+import BarChartOneSide from './BarChartOneSide';
 
 const Wrapper = styled.div`
   width: ${(props) => props.width}px;
@@ -75,9 +75,7 @@ const ChartWrapper = ({
   );
 
   const renderChart = (dataset) => {
-    let Chart = dataset.hasNegativeValue
-      ? BarChartByPercentage
-      : BarChartByNumber;
+    let Chart = dataset.hasNegativeValue ? BarChartTwoSide : BarChartOneSide;
 
     return (
       <Grid item key={dataset.name}>

@@ -15,7 +15,8 @@ const StyledButton = styled(Button)`
   color: ${(props) => !props.selected && '#000'};
 
   &:hover {
-    color: ${(props) => !props.selected && '#000'};
+    color: ${(props) => !props.selected && '#fff'} !important;
+    opacity: ${(props) => !props.selected && 0.5};
   }
 `;
 
