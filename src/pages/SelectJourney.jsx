@@ -15,7 +15,7 @@ import {
 import styled from '@emotion/styled';
 import './SelectJourney.css';
 import { createTheme, ThemeProvider } from '@mui/material';
-
+import { Link } from 'react-router-dom';
 import TopOfferingContent from './TopOfferingContent';
 import DigitalPayment from '../components/SelectJourney/DigitalPayment';
 import IndustryTabs from '../components/Tabs/Tabs';
@@ -38,11 +38,18 @@ export default function SelectJourney() {
   const [value, setValue] = React.useState(0);
   const [dashboardTitle, setDashboardTitle] = React.useState('');
   const [selectedCardOffering, setSelectedCardOffering] = React.useState(0);
+  const [listOfTabSelected, setListOfTabSelected] = React.useState([0]);
+
   const handleTabChange = (event, newValue) => {
-    console.log('newValue', newValue);
+    const newListOfTabSelected = [...listOfTabSelected, newValue];
     setValue(newValue);
     setSelectedCardOffering(0);
+    if (listOfTabSelected.includes(newValue)) {
+      return;
+    }
+    setListOfTabSelected(newListOfTabSelected);
   };
+
   const handleTabClick = (event, newValue) => {
     setSelectedCardOffering(0);
   };
@@ -141,7 +148,7 @@ export default function SelectJourney() {
               <Icon name="arrow-left" type="glyph" size={16} />
             </IconContainer>
             <Breadcrumbs>
-              <a href="#">Select units of performance</a>
+              <Link to="/select-strategy">Select units of performance</Link>
               <a href="#">Select your journey </a>
             </Breadcrumbs>
           </ContainerContent>
@@ -170,6 +177,7 @@ export default function SelectJourney() {
           handleTabClick={handleTabClick}
           isWithIcon={true}
           tabLabels={industryTabLabels}
+          tabsSelected={listOfTabSelected}
         />
       </FreeSpaceBackground>
       <TabContentContainer>

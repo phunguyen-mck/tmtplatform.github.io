@@ -1,35 +1,52 @@
 import React, { useState } from 'react';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
+
 import CheckCircleOutlinedIcon from '@mui/icons-material/CheckCircleOutlined';
-import './Tabs.css';
+import classnames from 'classnames';
+import { Container } from '@mds/mds-reactjs-library';
+import './Tabs.scss';
 export default function IndustryTabs({
   tabIndex,
   handleOnChange,
   handleTabClick,
   isWithIcon,
   tabLabels,
+  tabsSelected,
 }) {
-  console.log('tabIndex', tabIndex);
+  const renderTabIcon = (index) => {
+    if (isWithIcon && tabsSelected !== null) {
+      if (tabsSelected.includes(index)) {
+        return <CheckCircleOutlinedIcon />;
+      }
+    }
+  };
   return (
-    <div>
+    <Container>
       <Tabs
         value={tabIndex}
         key={tabIndex}
         onChange={handleOnChange}
         onClick={() => handleTabClick(tabIndex)}
         aria-label="icon label tabs example"
+        className="tabContainer"
       >
         {tabLabels.map((tab, index) => {
           return (
             <Tab
-              className="tabStyle"
-              icon={isWithIcon && <CheckCircleOutlinedIcon />}
-              label={tab.title}
+              className={classnames('tabStyle', {
+                isActiveTab: tabIndex === index,
+              })}
+              icon={renderTabIcon(index)}
+              label={
+                <div>
+                  <span className="tabTitle">{tab.title}</span>
+                </div>
+              }
             />
           );
         })}
       </Tabs>
-    </div>
+    </Container>
   );
 }

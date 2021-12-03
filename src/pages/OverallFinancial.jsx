@@ -33,7 +33,6 @@ export default function OverallFinancial() {
     }
     return <ExecutiveChanges />;
   };
-  console.log('tabIndex', tabIndex);
   return (
     <div>
       <IndustryTabs

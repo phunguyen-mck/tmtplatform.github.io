@@ -1,0 +1,5 @@
+@import "./font-face.scss";
+$base-font: "McKinsey Sans Regular","Helvetica Neue",Calibri,Corbel,Helvetica,Roboto,Droid,sans-serifl;
+body {
+    font-family: $base-font !important;
+}

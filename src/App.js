@@ -12,6 +12,7 @@ import Login from './Login';
 import SelectJourney from './pages/SelectJourney';
 import HeaderComponent from './components/layout/Header';
 import SelectUnitOfPerformance from 'SelectUnitOfPerformance';
+import './styles/global.scss';
 function App() {
   return (
     <ThemeProvider>
