@@ -1,6 +1,7 @@
 import React, { useCallback, useMemo } from 'react';
-import { Grid } from '@mds/mds-reactjs-library';
 import styled from '@emotion/styled';
+
+import { reduceToGetMaxPointValue, getBarConfiguration } from './helpers';
 
 const StyledBar = styled.div`
   width: ${(prop) => prop.width}px;
@@ -31,17 +32,7 @@ const StyledVerticalDivider = styled.div`
   left: 50%;
 `;
 
-const reduceToGetMaxPointValue = (maxValue, pointValue) =>
-  Math.max(maxValue, Math.abs(pointValue));
-
-const getBarConfiguration =
-  ({ chartWidth, maxPointValue }) =>
-  (pointValue) => ({
-    width: (Math.abs(pointValue) / maxPointValue) * chartWidth,
-    direction: pointValue >= 0 ? 'right' : 'left',
-  });
-
-const Chart = ({ data, width, rowHeight }) => {
+const Chart = ({ data, width, rowHeight, formatPointValue }) => {
   const { values, backgroundColors } = data;
   const itemCount = values.length;
   const maxPointValue = useMemo(
@@ -59,7 +50,7 @@ const Chart = ({ data, width, rowHeight }) => {
       ...(direction === 'right' ? { left: width / 2 } : {}),
       ...(direction === 'left' ? { right: width / 2 } : {}),
     };
-    let text = `${pointValue}%`;
+    let text = `${formatPointValue(pointValue)}`;
 
     return (
       <StyledRow height={rowHeight} key={pointIndex}>

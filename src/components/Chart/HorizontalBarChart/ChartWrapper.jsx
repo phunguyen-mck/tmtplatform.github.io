@@ -8,7 +8,8 @@ import React, {
 import styled from '@emotion/styled';
 import { Grid, useWindowResize } from '@mds/mds-reactjs-library';
 
-import BarChart from './BarChart';
+import BarChartByPercentage from './BarChartByPercentage';
+import BarChartByNumber from './BarChartByNumber';
 
 const Wrapper = styled.div`
   width: ${(props) => props.width}px;
@@ -27,6 +28,8 @@ const mapMetricDataToChartDataSet = (backgroundColors) => (metric) => ({
   name: metric.metricName,
   displayName: metric.displayName,
   values: metric.values,
+  // twoside or oneside
+  hasNegativeValue: !!metric.values.find((f) => f < 0),
   backgroundColors,
 });
 
@@ -36,6 +39,7 @@ const ChartWrapper = ({
   columnWidth: originalColumnWidth,
   spacing = 100,
   rowHeight = 34,
+  formatPointValue = (x) => x,
 
   // data
   // Array<{ label: string, value: number }>
@@ -70,18 +74,28 @@ const ChartWrapper = ({
     [datasets]
   );
 
-  const renderChart = (data) => (
-    <Grid item key={data.name}>
-      <Wrapper width={columnWidth}>
-        <BarChart data={data} width={columnWidth} rowHeight={rowHeight} />
-      </Wrapper>
-    </Grid>
-  );
+  const renderChart = (dataset) => {
+    let Chart = dataset.hasNegativeValue
+      ? BarChartByPercentage
+      : BarChartByNumber;
+
+    return (
+      <Grid item key={dataset.name}>
+        <Wrapper width={columnWidth}>
+          <Chart
+            data={dataset}
+            width={columnWidth}
+            rowHeight={rowHeight}
+            formatPointValue={formatPointValue}
+          />
+        </Wrapper>
+      </Grid>
+    );
+  };
   const containerRef = useRef();
 
   const computeColumnWidth = () => {
     if (!containerRef.current) return;
-    console.log('come here');
     const { width } = containerRef.current.getBoundingClientRect();
     setColumnWidth(Math.round(width / 4) - spacing);
   };
@@ -99,7 +113,7 @@ const ChartWrapper = ({
           <Grid item>
             <ChartLegend labels={labels} rowHeight={rowHeight} />
           </Grid>
-          {datasets.map((data) => renderChart(data))}
+          {datasets.map((dataset) => renderChart(dataset))}
         </StyledGridWrapper>
       </div>
     </div>
@@ -135,7 +149,7 @@ const ChartDatasetName = ({ displayNames, columnWidth }) => {
   `;
 
   const renderDisplayName = (displayName) => (
-    <Grid item span={3}>
+    <Grid item span={3} key={displayName}>
       {displayName}
     </Grid>
   );
