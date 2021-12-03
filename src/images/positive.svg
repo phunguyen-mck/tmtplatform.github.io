@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+    <g id="Icon_feather-plus-circle" data-name="Icon feather-plus-circle" transform="translate(-2.5 -2.5)">
+        <path id="Path_1008" data-name="Path 1008" d="M18,10.5A7.5,7.5,0,1,1,10.5,3,7.5,7.5,0,0,1,18,10.5Z" fill="none"
+              stroke="#3c96b4" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <path id="Path_1009" data-name="Path 1009" d="M18,12v6" transform="translate(-7.5 -4.5)" fill="none"
+              stroke="#3c96b4" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <path id="Path_1010" data-name="Path 1010" d="M12,18h6" transform="translate(-4.5 -7.5)" fill="none"
+              stroke="#3c96b4" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+    </g>
+</svg>

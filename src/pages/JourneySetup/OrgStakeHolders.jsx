@@ -11,6 +11,7 @@ import Box from '@mui/material/Box';
 import {
   BasicInformationCard,
   DoubleColInformationCard,
+  PositiveNegativeInformationCard,
 } from './InformationCard';
 
 const InfoModal = function (props) {
@@ -162,8 +163,11 @@ const InfoModal = function (props) {
               </div>
             </Overview>
 
-            {/*When qualifying or pitching*/}
-
+            <PositiveNegativeInformationCard
+              title={'When qualifying or pitching'}
+              positive={_.get(overview, 'pitching.positive')}
+              negative={_.get(overview, 'pitching.negative')}
+            />
             <DoubleColInformationCard
               title={'When negotiating and closing'}
               keys={_.get(overview, 'negotiatingAndClosing', [])}
@@ -366,6 +370,26 @@ const getStakeHolders = () => {
               'They can develop some risk-appetite once they have evaluated the merits of the decision',
           },
         ],
+        pitching: {
+          positive: {
+            title: 'Do this to build a winning connection',
+            content: [
+              'When negotiating terms, help them build an impression that they are the ones calling the shots',
+              'Be personal and polite and slightly formal',
+              'Be very observant about how they perceive the risk in the decision',
+            ],
+          },
+          negative: {
+            title: 'Don’t do this, you will lose their confidence',
+            content: [
+              "Don't try too hard to forge relationships with them",
+              'Don’t try to be overly social in the early interactions',
+              'Do not sound very transactional, make extra effort to be genuinely interested',
+              'Ensure that you don’t seem disinterested when speaking to them ',
+              'Don’t take too much time in sending them information if they ask for any',
+            ],
+          },
+        },
       },
     },
     {
