@@ -2,7 +2,12 @@ import React from 'react';
 import _ from 'lodash';
 import { Backdrop, Card, CardContent, Fade, Modal } from '@mui/material';
 import styled from '@emotion/styled';
-import { Icon, TYPE_OUTLINE } from '@mds/mds-reactjs-library';
+import {
+  Button,
+  Icon,
+  PRIMARY_BUTTON,
+  TYPE_OUTLINE,
+} from '@mds/mds-reactjs-library';
 import StakeHolderIcon from '../../images/stakeholder.svg';
 import StakeHolderInfoIcon from '../../images/stakeholder-info-icon.svg';
 import LocationIcon from '../../images/location-icon.svg';
@@ -180,6 +185,16 @@ const InfoModal = function (props) {
               title={'Setting sales expectations'}
               keys={_.get(overview, 'saleExpectations', [])}
             />
+
+            <div className="d-flex mt-3 justify-content-center">
+              <Button
+                appearance={PRIMARY_BUTTON}
+                onClick={props.handleClose}
+                style={{ borderRadius: '4px' }}
+              >
+                Close
+              </Button>
+            </div>
           </Container>
         </Box>
       </Fade>
