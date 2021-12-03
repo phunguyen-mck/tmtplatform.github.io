@@ -34,7 +34,6 @@ import DealInfo from './JourneySetup/DealInfo';
 import PeerMajorDealInfo from './JourneySetup/PeerMajorDealInfo';
 import OrgStakeHolders from './JourneySetup/OrgStakeHolders';
 import ITSpendInfo from './JourneySetup/ITSpendInfo';
-import ComparisionByPeer from './JourneySetup/ComparisionWithPeer';
 
 export default function SelectJourney() {
   const [value, setValue] = React.useState(0);
@@ -141,9 +140,7 @@ export default function SelectJourney() {
     if (value === IT_SPEND_MAP) {
       return <ITSpendInfo />;
     }
-    if (value === OVERALL_FINANCIAL_TAB) {
-      return <ComparisionByPeer />;
-    }
+
     return <span>Placeholder</span>;
   };
   const renderCardDetails = () => {

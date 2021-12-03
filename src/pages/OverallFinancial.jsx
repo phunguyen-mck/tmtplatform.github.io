@@ -14,7 +14,7 @@ import ExecutiveChanges from 'components/SelectJourney/FinancialOverall/Executiv
 import MATransaction from 'components/SelectJourney/FinancialOverall/MATransaction';
 import RecentDevelopment from 'components/SelectJourney/FinancialOverall/RecentDevelopment';
 export default function OverallFinancial() {
-  const [tabIndex, setTabIndex] = React.useState(3);
+  const [tabIndex, setTabIndex] = React.useState(1);
   const handleTabChange = (event, newValue) => {
     setTabIndex(newValue);
   };
