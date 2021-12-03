@@ -24,7 +24,7 @@ const StyledButton = styled(Button)`
 const T = () => {
   return (
     <div>
-      <Grid container>
+      <Grid container style={{ flexWrap: 'nowrap' }}>
         <Grid item style={{ width: 200 }}>
           <StyledButton selected>Revenue</StyledButton>
           <StyledButton>Size</StyledButton>
@@ -45,8 +45,8 @@ const getComparisionWithPeerData = () => ({
     'Citigroup Inc',
     'JPMorgan Chase & Co.',
     'Banco Santander, S.A.',
-    'Bank of America Corporation',
-    'Wells Fargo & Company',
+    'Bank ',
+    'Wells',
     'BNP Paribas SA',
   ],
   metrics: [

@@ -1,6 +1,12 @@
-import React, { useMemo, useCallback } from 'react';
+import React, {
+  useMemo,
+  useCallback,
+  useRef,
+  useState,
+  useEffect,
+} from 'react';
 import styled from '@emotion/styled';
-import { Typography, Grid, Icon, Button } from '@mds/mds-reactjs-library';
+import { Grid, useWindowResize } from '@mds/mds-reactjs-library';
 
 import BarChart from './BarChart';
 
@@ -8,6 +14,13 @@ const Wrapper = styled.div`
   width: ${(props) => props.width}px;
   position: relative;
   margin: 0px auto;
+`;
+
+const StyledGridWrapper = styled(Grid)`
+  width: 100%;
+  max-width: 1180px;
+  justify-content: center;
+  flex-wrap: nowrap;
 `;
 
 const mapMetricDataToChartDataSet = (backgroundColors) => (metric) => ({
@@ -20,7 +33,8 @@ const mapMetricDataToChartDataSet = (backgroundColors) => (metric) => ({
 const getDatasetDisplayName = (dataset) => dataset.displayName;
 
 const ChartWrapper = ({
-  columnWidth,
+  columnWidth: originalColumnWidth,
+  spacing = 100,
 
   // data
   // Array<{ label: string, value: number }>
@@ -42,8 +56,8 @@ const ChartWrapper = ({
     [backgroundColors]
   );
 
+  const [columnWidth, setColumnWidth] = useState(originalColumnWidth);
   const { labels, metrics } = metricDataSet;
-  console.log(labels);
 
   const datasets = useMemo(
     () => metrics.map(transformMetricToDataSet),
@@ -62,24 +76,32 @@ const ChartWrapper = ({
       </Wrapper>
     </Grid>
   );
+  const containerRef = useRef();
+
+  const computeColumnWidth = () => {
+    if (!containerRef.current) return;
+    console.log('come here');
+    const { width } = containerRef.current.getBoundingClientRect();
+    setColumnWidth(Math.round(width / 4) - spacing);
+  };
+
+  useWindowResize(computeColumnWidth);
+  useEffect(() => {
+    computeColumnWidth();
+  }, []);
 
   return (
-    <React.Fragment>
-      <ChartDatasetName
-        displayNames={datasetsDisplayNames}
-        columnWidth={columnWidth}
-      />
-      <Grid
-        container
-        style={{ width: '100%', justifyContent: 'center' }}
-        spacing={100}
-      >
-        <Grid item>
-          <ChartLegend labels={labels} />
-        </Grid>
-        {datasets.map((data) => renderChart(data))}
-      </Grid>
-    </React.Fragment>
+    <div>
+      <ChartDatasetName displayNames={datasetsDisplayNames} />
+      <div ref={containerRef}>
+        <StyledGridWrapper container spacing={spacing}>
+          <Grid item>
+            <ChartLegend labels={labels} />
+          </Grid>
+          {datasets.map((data) => renderChart(data))}
+        </StyledGridWrapper>
+      </div>
+    </div>
   );
 };
 
@@ -88,7 +110,7 @@ export default ChartWrapper;
 const ChartLegend = ({ labels }) => {
   const StyledLabel = styled.div`
     height: 34px;
-    font-szie: 14;
+    font-szie: 12;
     color: #7f7f7f;
     text-align: right;
   `;
@@ -105,11 +127,12 @@ const ChartDatasetName = ({ displayNames, columnWidth }) => {
   const StyledContainer = styled(Grid)`
     width: 100%;
     justify-content: center;
-    font-size: 14;
+    font-size: 12;
+    margin-bottom: 16px;
   `;
 
   const renderDisplayName = (displayName) => (
-    <Grid item style={{ width: columnWidth }}>
+    <Grid item span={3}>
       {displayName}
     </Grid>
   );
