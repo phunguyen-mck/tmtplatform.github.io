@@ -2,12 +2,16 @@ import React from 'react';
 import _ from 'lodash';
 import { Backdrop, Card, CardContent, Fade, Modal } from '@mui/material';
 import styled from '@emotion/styled';
-import { Icon, TYPE_COLORED, TYPE_OUTLINE } from '@mds/mds-reactjs-library';
+import { Icon, TYPE_OUTLINE } from '@mds/mds-reactjs-library';
 import StakeHolderIcon from '../../images/stakeholder.svg';
 import StakeHolderInfoIcon from '../../images/stakeholder-info-icon.svg';
 import LocationIcon from '../../images/location-icon.svg';
 import StarIcon from '../../images/star.svg';
 import Box from '@mui/material/Box';
+import {
+  BasicInformationCard,
+  DoubleColInformationCard,
+} from './InformationCard';
 
 const InfoModal = function (props) {
   const { name, title, org, location, overview } = props.stakeholder;
@@ -17,7 +21,9 @@ const InfoModal = function (props) {
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: '80%',
+    width: '70%',
+    height: '80vh',
+    overflow: 'auto',
     bgcolor: '#FFFFFF',
     boxShadow: '0px 6px 24px #00000033',
   };
@@ -91,8 +97,6 @@ const InfoModal = function (props) {
     }
   `;
 
-  const InformationCard = styled.div``;
-
   return (
     <Modal
       aria-labelledby="transition-modal-title"
@@ -157,7 +161,21 @@ const InfoModal = function (props) {
                 </div>
               </div>
             </Overview>
-            <InformationCard></InformationCard>
+
+            {/*When qualifying or pitching*/}
+
+            <DoubleColInformationCard
+              title={'When negotiating and closing'}
+              keys={_.get(overview, 'negotiatingAndClosing', [])}
+            />
+            <BasicInformationCard
+              title={'When interacting in general (key interests)'}
+              keys={_.get(overview, 'interactingKeyInterests', [])}
+            />
+            <DoubleColInformationCard
+              title={'Setting sales expectations'}
+              keys={_.get(overview, 'saleExpectations', [])}
+            />
           </Container>
         </Box>
       </Fade>
@@ -319,6 +337,35 @@ const getStakeHolders = () => {
         keys: ['Slow-Paced', 'Concensus Seeker', 'Risk-Taker'],
         discProfile: ['High Steadiness', 'High Dominance'],
         oceanProfile: ['Very Conscientious', 'Agreeable', 'Sensitive'],
+        interactingKeyInterests: [
+          'When negotiating terms, help them build an impression that they are the ones calling the shots',
+          'Be personal and polite and slightly formal',
+          'Be very observant about how they perceive the risk in the decision',
+        ],
+        negotiatingAndClosing: [
+          {
+            title: 'The secret to closing fast with stakeholder:',
+            content:
+              'Low risk, followed by confidence in ROI is most important for them',
+          },
+          {
+            title: 'Will you ever get a clear answer from stakeholder?',
+            content:
+              'They don’t say no very often by themselves, you will need to push them to get a clear yes or no',
+          },
+        ],
+        saleExpectations: [
+          {
+            title: 'How fast (or slow) will CP move?',
+            content:
+              'They start out slow and can take time to understand your proposition, but can speed up later once they are confident of your proposal',
+          },
+          {
+            title: 'Can Mike take some risk or not?',
+            content:
+              'They can develop some risk-appetite once they have evaluated the merits of the decision',
+          },
+        ],
       },
     },
     {
