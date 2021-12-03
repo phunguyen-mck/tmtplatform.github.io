@@ -1,31 +1,97 @@
 import React from 'react';
 import _ from 'lodash';
-import {
-  Backdrop,
-  Card,
-  CardContent,
-  Fade,
-  Modal,
-  Typography,
-} from '@mui/material';
+import { Backdrop, Card, CardContent, Fade, Modal } from '@mui/material';
 import styled from '@emotion/styled';
-import { Icon, TYPE_OUTLINE } from '@mds/mds-reactjs-library';
+import { Icon, TYPE_COLORED, TYPE_OUTLINE } from '@mds/mds-reactjs-library';
 import StakeHolderIcon from '../../images/stakeholder.svg';
 import StakeHolderInfoIcon from '../../images/stakeholder-info-icon.svg';
+import LocationIcon from '../../images/location-icon.svg';
+import StarIcon from '../../images/star.svg';
 import Box from '@mui/material/Box';
 
 const InfoModal = function (props) {
+  const { name, title, org, location, overview } = props.stakeholder;
+
   const style = {
     position: 'absolute',
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: 400,
-    bgcolor: 'background.paper',
-    border: '2px solid #000',
-    boxShadow: 24,
-    p: 4,
+    width: '80%',
+    bgcolor: '#FFFFFF',
+    boxShadow: '0px 6px 24px #00000033',
   };
+
+  const Container = styled.div`
+    padding: 30px 25px;
+  `;
+  const Header = styled.div`
+    padding: 12px 18px;
+    background-color: #2251ff;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+
+    .name {
+      margin-left: 100px;
+      font: normal normal 500 24px/10px McKinsey Sans;
+      flex-grow: 1;
+    }
+
+    .location {
+      font: normal normal 300 20px/10px McKinsey Sans;
+      color: #ffffff;
+    }
+  `;
+
+  const IconContainer = styled.div`
+    position: absolute;
+    width: 66px;
+    height: 66px;
+    border-radius: 66px;
+    background-color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #2251ff;
+    margin-left: 10px;
+
+    svg {
+      width: 50px;
+      height: 50px;
+    }
+  `;
+
+  const Overview = styled.div`
+    background-color: #f0f0f0;
+    margin-top: 28px;
+    padding: 23px 17px 17px 17px;
+    font: normal normal normal 16px/22px McKinsey Sans;
+
+    .items-list-container {
+      background-color: #ffffff;
+      margin-top: 18px;
+      padding: 14px 20px;
+    }
+  `;
+  const KeyContainer = styled.div`
+    display: flex;
+    align-items: center;
+
+    & + div {
+      margin-top: 20px;
+    }
+
+    svg {
+      color: #2251ff;
+    }
+
+    span {
+      margin-left: 8px;
+    }
+  `;
+
+  const InformationCard = styled.div``;
 
   return (
     <Modal
@@ -41,12 +107,58 @@ const InfoModal = function (props) {
     >
       <Fade in={props.open}>
         <Box sx={style}>
-          <Typography id="transition-modal-title" variant="h6" component="h2">
-            Text in a modal
-          </Typography>
-          <Typography id="transition-modal-description" sx={{ mt: 2 }}>
-            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-          </Typography>
+          <Container>
+            <Header>
+              <IconContainer style={{}}>
+                <Icon size={'px'} type={TYPE_OUTLINE} src={StakeHolderIcon} />
+              </IconContainer>
+              <div className="name">
+                {name}, {title} {org}
+              </div>
+              <div className="location">
+                <Icon size={32} type={TYPE_OUTLINE} src={LocationIcon} />
+                <span className="ml-2">{location}</span>
+              </div>
+            </Header>
+            <Overview>
+              <div>
+                They are reasonably social and can develop loyalty towards you
+                over time. They like to get a grasp on the process before they
+                start making decisions
+              </div>
+              <div className="items-list-container container-fluid">
+                <div className="row">
+                  <div className="col border-right">
+                    {_.map(_.get(overview, 'keys', []), (k) => {
+                      return (
+                        <KeyContainer>
+                          <Icon size={16} type={TYPE_OUTLINE} src={StarIcon} />
+                          <span>{k}</span>
+                        </KeyContainer>
+                      );
+                    })}
+                  </div>
+                  <div className="col pl-8">
+                    <div className="mb-2">
+                      <b>DISC profile</b>
+                    </div>
+                    {_.map(_.get(overview, 'discProfile', []), (k) => {
+                      return <div className="mt-2">{k}</div>;
+                    })}
+                  </div>
+                  <div className="col">
+                    <div className="mb-2">
+                      <b>OCEAN (BIG 5) profile</b>
+                    </div>
+                    {_.map(_.get(overview, 'oceanProfile', []), (k) => {
+                      return <div className="mt-2">{k}</div>;
+                    })}
+                  </div>
+                </div>
+              </div>
+            </Overview>
+            <InformationCard></InformationCard>
+          </Container>
         </Box>
       </Fade>
     </Modal>
@@ -55,7 +167,7 @@ const InfoModal = function (props) {
 
 // move this back into function with state management
 const StakeHolderCard = function (props) {
-  const { name, title, org, isMainStakeHolder } = props.stakeHolder;
+  const { name, title, org, isMainStakeHolder } = props.stakeholder;
   const [open, setOpen] = React.useState(false);
   const [check, setCheck] = React.useState(false);
 
@@ -64,6 +176,7 @@ const StakeHolderCard = function (props) {
     flex-direction: row;
     align-items: center;
     padding: 10px;
+    position: relative;
   `;
   const IconContainer = styled.div`
     height: 50px;
@@ -96,8 +209,8 @@ const StakeHolderCard = function (props) {
   `;
   const IconWrapper = styled.img`
     position: absolute;
-    top: 12px;
-    right: 36px;
+    top: -4px;
+    right: 0px;
     color: #1f40e6;
     width: 16px;
     height: 16px;
@@ -113,7 +226,7 @@ const StakeHolderCard = function (props) {
             }}
           />
           <IconContainer>
-            <Icon size={48} type={TYPE_OUTLINE} src={StakeHolderIcon} />
+            <Icon type={TYPE_OUTLINE} src={StakeHolderIcon} />
           </IconContainer>
           <div>
             <NameDiv>{name}</NameDiv>
@@ -133,6 +246,7 @@ const StakeHolderCard = function (props) {
             handleClose={() => {
               setOpen(false);
             }}
+            stakeholder={props.stakeholder}
           />
         </CardContentDiv>
       </CardContent>
@@ -142,14 +256,14 @@ const StakeHolderCard = function (props) {
 
 const OrgStakeHolders = () => {
   const CARD_PER_ROW = 4;
-  const stakeHolders = getStakeHolders();
+  const stakeholders = getStakeHolders();
   const mainStakeholder = _.find(
-    stakeHolders,
-    (stakeHolder) => stakeHolder.isMainStakeHolder
+    stakeholders,
+    (stakeholder) => stakeholder.isMainStakeHolder
   );
   const otherStakeholder = _.filter(
-    stakeHolders,
-    (stakeHolder) => !stakeHolder.isMainStakeHolder
+    stakeholders,
+    (stakeholder) => !stakeholder.isMainStakeHolder
   );
 
   function getDummyCards(dummyCardCount) {
@@ -165,21 +279,21 @@ const OrgStakeHolders = () => {
       <div className="row">
         <div className="col" />
         <div className="col">
-          {<StakeHolderCard stakeHolder={mainStakeholder} />}
+          {<StakeHolderCard stakeholder={mainStakeholder} />}
         </div>
         <div className="col" />
       </div>
 
-      {_.map(_.chunk(otherStakeholder, CARD_PER_ROW), (stackholders) => {
-        const length = stackholders.length;
+      {_.map(_.chunk(otherStakeholder, CARD_PER_ROW), (stakeholders) => {
+        const length = stakeholders.length;
         const dummyCardCount = CARD_PER_ROW - length;
 
         return (
           <div className="row mt-4">
-            {_.map(stackholders, (stackholder) => {
+            {_.map(stakeholders, (stakeholder) => {
               return (
                 <div className="col">
-                  <StakeHolderCard stakeHolder={stackholder} />
+                  <StakeHolderCard stakeholder={stakeholder} />
                 </div>
               );
             })}
@@ -199,7 +313,13 @@ const getStakeHolders = () => {
       name: 'Jane Fraser',
       title: 'CEO',
       org: 'Citybank',
+      location: 'New York, USA',
       isMainStakeHolder: true,
+      overview: {
+        keys: ['Slow-Paced', 'Concensus Seeker', 'Risk-Taker'],
+        discProfile: ['High Steadiness', 'High Dominance'],
+        oceanProfile: ['Very Conscientious', 'Agreeable', 'Sensitive'],
+      },
     },
     {
       name: 'Jane Fraser',
