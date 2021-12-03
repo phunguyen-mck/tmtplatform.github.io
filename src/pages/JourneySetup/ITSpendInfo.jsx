@@ -7,7 +7,6 @@ import useThemeColorMapping from 'hooks/useThemeColorMapping';
 
 const Card = styled.div`
   width: ${(props) => props.width}px;
-  background: var(--color-neutral-white) 0% 0% no-repeat padding-box;
   background: #ffffff 0% 0% no-repeat padding-box;
   box-shadow: 0px 0px 12px #00000012;
   border-radius: 6px;
