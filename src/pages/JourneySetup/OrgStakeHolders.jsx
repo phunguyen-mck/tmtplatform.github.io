@@ -4,6 +4,7 @@ import { Card, CardContent } from '@mui/material';
 import styled from '@emotion/styled';
 import { Icon, TYPE_OUTLINE } from '@mds/mds-reactjs-library';
 import StakeHolderIcon from '../../images/stakeholder.svg';
+import StakeHolderInfoIcon from '../../images/stakeholder-info-icon.svg';
 
 // move this back into function with state management
 class StakeHolderCard extends React.Component {
@@ -52,6 +53,14 @@ class StakeHolderCard extends React.Component {
       letter-spacing: 0px;
       color: #000000;
     `;
+    const IconWrapper = styled.img`
+      position: absolute;
+      top: 12px;
+      right: 36px;
+      color: #1f40e6;
+      width: 16px;
+      height: 16px;
+    `;
 
     return (
       <Card sx={{ maxWidth: 345 }} className="m-2">
@@ -73,6 +82,10 @@ class StakeHolderCard extends React.Component {
                 {title}, {org}
               </TitleDiv>
             </div>
+            <IconWrapper
+              src={StakeHolderInfoIcon}
+              alt={'StakeHolderInfoIcon'}
+            />
           </CardContentDiv>
         </CardContent>
       </Card>
