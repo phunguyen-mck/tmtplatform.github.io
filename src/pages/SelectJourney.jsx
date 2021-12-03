@@ -32,7 +32,7 @@ import { industryTabLabels } from '../constant/TabLabels';
 
 import DealInfo from './JourneySetup/DealInfo';
 import PeerMajorDealInfo from './JourneySetup/PeerMajorDealInfo';
-import OrgStakeholders from './JourneySetup/OrgStakeholders';
+import OrgStakeHolders from './JourneySetup/OrgStakeHolders';
 import ITSpendInfo from './JourneySetup/ITSpendInfo';
 
 export default function SelectJourney() {
@@ -134,9 +134,8 @@ export default function SelectJourney() {
 
     // move into switch/case in stead of using multiple ifs
     if (value === ORG_STAKEHOLDERS_TAB) {
-      return <OrgStakeholders />;
+      return <OrgStakeHolders />;
     }
-
 
     if (value === IT_SPEND_MAP) {
       return <ITSpendInfo />;
