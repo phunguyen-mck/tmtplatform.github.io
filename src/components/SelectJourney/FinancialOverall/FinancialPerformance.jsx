@@ -11,7 +11,6 @@ import RevenueChartComponent, {
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 import numeral from 'numeral';
 
-Chart.register(ChartDataLabels);
 Chart.register(CategoryScale);
 Chart.register(LinearScale);
 Chart.register(BarElement);
@@ -84,7 +83,12 @@ const EBITDA = function (props) {
         <span>EBITDA Margin</span> (%)
       </Title>
       <BorderedDiv>
-        <Bar data={data} options={options} height={300} />
+        <Bar
+          data={data}
+          options={options}
+          height={300}
+          plugins={[ChartDataLabels]}
+        />
       </BorderedDiv>
     </Container>
   );
@@ -167,7 +171,12 @@ const MarketCapitalization = function (props) {
         <span>Market capitalisation, CY</span> (USB Mn)
       </Title>
       <BorderedDiv>
-        <Bar data={data} options={options} height={169} />
+        <Bar
+          data={data}
+          options={options}
+          height={169}
+          plugins={[ChartDataLabels]}
+        />
       </BorderedDiv>
     </Container>
   );
