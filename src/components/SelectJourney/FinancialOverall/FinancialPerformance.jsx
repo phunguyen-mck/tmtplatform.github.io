@@ -26,10 +26,12 @@ const EBITDA = function (props) {
       {
         label: 'margin',
         data: margins,
+        barThickness: 30,
         backgroundColor: ['#051C2C'],
         borderWidth: 0,
         borderRadius: Number.MAX_VALUE,
         borderSkipped: false,
+        color: '#7F7F7F',
       },
     ],
   };
@@ -39,6 +41,11 @@ const EBITDA = function (props) {
       x: {
         grid: {
           display: false,
+        },
+        ticks: {
+          font: {
+            size: 14,
+          },
         },
       },
       y: {
@@ -79,6 +86,7 @@ const MarketCapitalization = function (props) {
       {
         label: 'margin',
         data: dataset,
+        barThickness: 30,
         backgroundColor: [
           '#034B6F',
           '#027AB1',
@@ -87,6 +95,7 @@ const MarketCapitalization = function (props) {
           '#71D2F1',
           '#AAE6F0',
         ],
+        color: '#7F7F7F',
         borderWidth: 0,
         borderRadius: Number.MAX_VALUE,
         borderSkipped: false,
@@ -104,9 +113,13 @@ const MarketCapitalization = function (props) {
         },
       },
       y: {
-        display: true,
         grid: {
           display: false,
+        },
+        ticks: {
+          font: {
+            size: 14,
+          },
         },
       },
     },
