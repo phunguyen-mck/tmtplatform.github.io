@@ -1,16 +1,92 @@
 import React from 'react';
 import { Container, ThemeProvider } from '@mui/material';
+import { BarElement, CategoryScale, Chart, LinearScale } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
 import _ from 'lodash';
 import styled from '@emotion/styled';
-import { BarElement, CategoryScale, Chart, LinearScale } from 'chart.js';
 
 Chart.register(CategoryScale);
 Chart.register(LinearScale);
 Chart.register(BarElement);
 
-const Revenue = function () {
-  return <div />;
+const Revenue = function (props) {
+  const { revenue } = props;
+  const labels = _.map(revenue, (k) => k.year);
+
+  // refactor this
+  const institutionalClientsGroup = _.map(revenue, (k) => {
+    return k.institutionalClientsGroup;
+  });
+  const globalConsumerBanking = _.map(revenue, (k) => {
+    return k.globalConsumerBanking;
+  });
+  const citiHoldings = _.map(revenue, (k) => {
+    return k.citiHoldings;
+  });
+  const corporateOther = _.map(revenue, (k) => {
+    return k.corporateOther;
+  });
+
+  const data = {
+    labels: labels,
+    datasets: [
+      {
+        label: 'institutionalClientsGroup',
+        data: institutionalClientsGroup,
+        backgroundColor: ['#051C2C'],
+        borderWidth: 0,
+        borderRadius: Number.MAX_VALUE,
+        borderSkipped: false,
+      },
+      {
+        label: 'globalConsumerBanking',
+        data: globalConsumerBanking,
+        backgroundColor: ['#2251FF'],
+      },
+      {
+        label: 'citiHoldings',
+        data: citiHoldings,
+        backgroundColor: ['#00A9F4'],
+      },
+      {
+        label: 'corporateOther',
+        data: corporateOther,
+        backgroundColor: ['#AAE6F0'],
+        borderWidth: 0,
+        borderRadius: Number.MAX_VALUE,
+        borderSkipped: false,
+      },
+    ],
+  };
+
+  const options = {
+    scales: {
+      x: {
+        stacked: true,
+        grid: {
+          display: false,
+        },
+      },
+      y: {
+        stacked: true,
+        display: true,
+        grid: {
+          display: false,
+        },
+      },
+    },
+  };
+
+  const Container = styled.div`
+    height: 600px;
+  `;
+
+  return (
+    <Container>
+      <div>Revenue (USD Mn)</div>
+      <Bar data={data} options={options} />
+    </Container>
+  );
 };
 
 const EBITDA = function (props) {
@@ -125,7 +201,7 @@ export default function FinancialPerformance() {
       <div className="container-fluid p-8">
         <div className="row">
           <div className="col-4">
-            <Revenue />
+            <Revenue revenue={_.get(data, 'client.revenue') || []} />
           </div>
           <div className="col-3">
             <EBITDA EBITDAMargin={_.get(data, 'client.EBITDAMargin') || []} />
