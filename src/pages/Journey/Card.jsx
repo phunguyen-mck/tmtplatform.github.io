@@ -2,11 +2,10 @@ import React, { useRef } from 'react';
 import styled from '@emotion/styled';
 
 import { Icon, Typography } from '@mds/mds-reactjs-library';
-import Outline16ArrowDown from '@mds/mds-icons/icons/svg/outline-16-arrow-down.svg';
-import Outline16ArrowUp from '@mds/mds-icons/icons/svg/outline-16-arrow-up.svg';
 
 import useCollapsible from 'hooks/useCollapse';
 import useThemeColorMapping from 'hooks/useThemeColorMapping';
+import AnimatedExpandIcon from './AnimatedExpandIcon';
 
 const StyledCard = styled.div`
   width: 612px;
@@ -71,19 +70,10 @@ const JourneyCard = ({ content, icon, renderCollapseContent }) => {
             {content}
           </Typography>
         </div>
-        <IconWrapper
-          color={primaryColor}
-          size={24}
+        <AnimatedExpandIcon
           onClick={() => setExpanded((t) => !t)}
-          style={{ cursor: 'pointer' }}
-        >
-          <StyledIcon
-            size={8}
-            type="outline"
-            src={expanded ? Outline16ArrowUp : Outline16ArrowDown}
-            fill={primaryColor}
-          />
-        </IconWrapper>
+          expanded={expanded}
+        />
       </StyledHeader>
       <div ref={ref}>
         <div className="p-3">{renderCollapseContent()}</div>
