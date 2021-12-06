@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
-import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import styled from '@emotion/styled';
 import {
-  Header,
   Avatar,
+  Header,
   HeaderIconButton,
   HeaderRightSectionItemWrapper,
 } from '@mds/mds-reactjs-library';
@@ -59,9 +59,14 @@ const HeaderComponent = () => {
   if (location.pathname === '/' || location.pathname === '/login') {
     return null;
   }
+
+  const LogoSection = styled.div`
+    font: normal normal bold 27px/22px Bower;
+  `;
+
   return (
     <Header
-      logoSection="Sale 2.0 Platform"
+      logoSection={<LogoSection>Sale 2.0 Platform</LogoSection>}
       rightSection={rightSection}
     ></Header>
   );
