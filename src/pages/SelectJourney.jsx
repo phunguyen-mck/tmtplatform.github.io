@@ -140,6 +140,7 @@ export default function SelectJourney() {
     if (value === IT_SPEND_MAP) {
       return <ITSpendInfo />;
     }
+
     return <span>Placeholder</span>;
   };
   const renderCardDetails = () => {
