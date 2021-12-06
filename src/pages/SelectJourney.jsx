@@ -8,7 +8,6 @@ import {
   Button as ButtonMDS,
   BADGE_TYPE_INFORMATION_DEFAULT,
   SIZE_SMALL,
-  TYPE_OUTLINE,
   Typography,
   BODY_DEFAULT,
 } from '@mds/mds-reactjs-library';
@@ -34,10 +33,13 @@ import DealInfo from './JourneySetup/DealInfo';
 import PeerMajorDealInfo from './JourneySetup/PeerMajorDealInfo';
 import OrgStakeHolders from './JourneySetup/OrgStakeHolders';
 import ITSpendInfo from './JourneySetup/ITSpendInfo';
-
+import WelcomeHeader from 'components/SelectJourney/Header/WelcomeHeader';
+import OppourtunityMap from 'components/SelectJourney/OppourtunityMap/OppourtunityMap';
 export default function SelectJourney() {
   const [value, setValue] = React.useState(0);
   const [dashboardTitle, setDashboardTitle] = React.useState('');
+  const [isRedirectToOppourtunityPage, setIsRedirectToOppourtunityPage] =
+    React.useState(false);
   const [selectedCardOffering, setSelectedCardOffering] = React.useState(0);
   const [listOfTabSelected, setListOfTabSelected] = React.useState([0]);
 
@@ -53,6 +55,13 @@ export default function SelectJourney() {
 
   const handleTabClick = (event, newValue) => {
     setSelectedCardOffering(0);
+  };
+  const handleOnClickOpenOppourtunityButton = () => {
+    setIsRedirectToOppourtunityPage(true);
+    setSelectedCardOffering(0);
+  };
+  const handleGoBackSelectJourneyScreen = () => {
+    setIsRedirectToOppourtunityPage(false);
   };
   const theme = createTheme({
     typography: {
@@ -70,46 +79,14 @@ export default function SelectJourney() {
       ].join(','),
     },
   });
-  const ButtonStyled = styled(ButtonMDS)`
-    margin-right: 12px;
-    margin-bottom: 12px;
-    background: white;
-  `;
   const TabContentContainer = styled.div`
     padding: 30px;
   `;
   const FreeSpaceBackground = styled.div`
     width: 100%;
     background-color: #f5f5f5;
+    padding: 1rem;
   `;
-  const ContainerContent = styled.div`
-    height: auto;
-    padding: 10px;
-    display: flex;
-    align-item: center;
-  `;
-  const IconContainer = styled.div`
-    margin-right: 10px;
-  `;
-  const ContentItemContainer = styled.div`
-    padding: 10px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  `;
-  const ButtonContainer = styled.div`
-    position: relative;
-  `;
-  const StyledBadge = styled(Badge)`
-    position: absolute;
-    top: -7px;
-    right: 5px;
-  `;
-  const TextContainer = styled.span`
-    color: blue;
-    font-weight: bold;
-  `;
-  const userIcon = <Icon size={16} type={TYPE_OUTLINE} name="single-01" />;
 
   const renderTabContent = () => {
     if (value === TOP_DIGITAL_OFFERING_TAB) {
@@ -146,54 +123,57 @@ export default function SelectJourney() {
   const renderCardDetails = () => {
     return <DigitalPayment title={dashboardTitle} />;
   };
+  const renderOppourtunityPage = () => {
+    if (isRedirectToOppourtunityPage) {
+      return (
+        <>
+          <FreeSpaceBackground>
+            <WelcomeHeader
+              withBadge={true}
+              tabValue={value}
+              isRedirectToOppourtunityPage={isRedirectToOppourtunityPage}
+              handleOnClickOpenOppourtunityButton={
+                handleOnClickOpenOppourtunityButton
+              }
+              handleGoBackSelectJourneyScreen={handleGoBackSelectJourneyScreen}
+            />
+          </FreeSpaceBackground>
+          <OppourtunityMap />
+        </>
+      );
+    }
+    return (
+      <>
+        <FreeSpaceBackground>
+          <WelcomeHeader
+            withBadge={true}
+            tabValue={value}
+            isRedirectToOppourtunityPage={isRedirectToOppourtunityPage}
+            handleOnClickOpenOppourtunityButton={
+              handleOnClickOpenOppourtunityButton
+            }
+            handleGoBackSelectJourneyScreen={handleGoBackSelectJourneyScreen}
+          />
+          <IndustryTabs
+            tabIndex={value}
+            handleOnChange={handleTabChange}
+            handleTabClick={handleTabClick}
+            isWithIcon={true}
+            tabLabels={industryTabLabels}
+            tabsSelected={listOfTabSelected}
+          />
+        </FreeSpaceBackground>
+        <TabContentContainer>
+          <div className="scrollable">
+            {selectedCardOffering === 0
+              ? renderTabContent()
+              : renderCardDetails()}
+          </div>
+        </TabContentContainer>
+      </>
+    );
+  };
   return (
-    <ThemeProvider theme={theme}>
-      <FreeSpaceBackground>
-        <Container>
-          <ContainerContent>
-            <IconContainer>
-              <Icon name="arrow-left" type="glyph" size={16} />
-            </IconContainer>
-            <Breadcrumbs>
-              <Link to="/select-strategy">Select units of performance</Link>
-              <a href="#">Select your journey </a>
-            </Breadcrumbs>
-          </ContainerContent>
-          <ContentItemContainer>
-            <div>
-              Welcome to the{' '}
-              <TextContainer> Account Strategy and Planning</TextContainer> hub
-              for <TextContainer>Citibank</TextContainer>
-            </div>
-            <ButtonContainer>
-              <ButtonStyled appearance={SECONDARY_BUTTON} endIcon={userIcon}>
-                Slide deck{' '}
-              </ButtonStyled>
-              <StyledBadge
-                type={BADGE_TYPE_INFORMATION_DEFAULT}
-                size={SIZE_SMALL}
-              >
-                1
-              </StyledBadge>
-            </ButtonContainer>
-          </ContentItemContainer>
-        </Container>
-        <IndustryTabs
-          tabIndex={value}
-          handleOnChange={handleTabChange}
-          handleTabClick={handleTabClick}
-          isWithIcon={true}
-          tabLabels={industryTabLabels}
-          tabsSelected={listOfTabSelected}
-        />
-      </FreeSpaceBackground>
-      <TabContentContainer>
-        <div className="scrollable">
-          {selectedCardOffering === 0
-            ? renderTabContent()
-            : renderCardDetails()}
-        </div>
-      </TabContentContainer>
-    </ThemeProvider>
+    <ThemeProvider theme={theme}>{renderOppourtunityPage()}</ThemeProvider>
   );
 }

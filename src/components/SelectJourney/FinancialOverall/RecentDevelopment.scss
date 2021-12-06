@@ -7,10 +7,13 @@
     }
 }
 .link-cell{
-    color: blue !important;
-    font-style: italic;
-    font-weight: 600 !important;
-    text-decoration: underline;
+   
+    span{
+        color: #2251FF !important;
+        font-style: italic;
+        font-weight: 600 !important;
+        text-decoration: underline;
+    }
 
 }
 .table-row{

@@ -39,67 +39,67 @@ const HeaderCell = ({ children, ...props }) => {
 const rowsData = [
   {
     news: 'Text to come',
-    link: 'xxxx',
+    link: <span>xxxx</span>,
     date: 'xxxx',
   },
   {
     news: 'Text to come',
-    link: 'xxxx',
+    link: <span>xxxx</span>,
     date: 'xxxx',
   },
   {
     news: 'Text to come',
-    link: 'xxxx',
+    link: <span>xxxx</span>,
     date: 'xxxx',
   },
   {
     news: 'Text to come',
-    link: 'xxxx',
+    link: <span>xxxx</span>,
     date: 'xxxx',
   },
   {
     news: 'Text to come',
-    link: 'xxxx',
+    link: <span>xxxx</span>,
     date: 'xxxx',
   },
   {
     news: 'Text to come',
-    link: 'xxxx',
+    link: <span>xxxx</span>,
     date: 'xxxx',
   },
   {
     news: 'Text to come',
-    link: 'xxxx',
+    link: <span>xxxx</span>,
     date: 'xxxx',
   },
   {
     news: 'Text to come',
-    link: 'xxxx',
+    link: <span>xxxx</span>,
     date: 'xxxx',
   },
   {
     news: 'Text to come',
-    link: 'xxxx',
+    link: <span>xxxx</span>,
     date: 'xxxx',
   },
   {
     news: 'Text to come',
-    link: 'xxxx',
+    link: <span>xxxx</span>,
     date: 'xxxx',
   },
   {
     news: 'Text to come',
-    link: 'xxxx',
+    link: <span>xxxx</span>,
     date: 'xxxx',
   },
   {
     news: 'Text to come',
-    link: 'xxxx',
+    link: <span>xxxx</span>,
     date: 'xxxx',
   },
   {
     news: 'Text to come',
-    link: 'xxxx',
+    link: <span>xxxx</span>,
     date: 'xxxx',
   },
 ];

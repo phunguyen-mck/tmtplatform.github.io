@@ -37,17 +37,17 @@
     max-width: 80px;
 }
 .blue {
-    color: blue;
-    background-color: lightblue;
+    color: #00A9F4;
+    background-color: #39BDF326;
 
 }
 .orange {
-    color: orange;
-    background-color: lightcoral;
+    color: #FAA082;
+    background-color: #FAA08238;
 }
 .lightBlue {
-    color: lightblue;
-    background: lightskyblue;
+    color: #3C96B4;
+    background: #3C96B43D;
 }
 .cardContentContainer {
     min-height: 88px;

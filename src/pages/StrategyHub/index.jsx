@@ -55,7 +55,6 @@ const StrategyHubPage = () => {
           <PrimaryText component="span">
             Account Strategy and Planning
           </PrimaryText>{' '}
-          hub for
           <PrimaryText component="span">{accountName}</PrimaryText>
         </Typography>
       </div>

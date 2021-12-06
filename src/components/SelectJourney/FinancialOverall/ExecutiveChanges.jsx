@@ -40,67 +40,52 @@ const rowsData = [
   {
     news: 'Text to come',
     change: 'xxxx',
-    link: 'xxxx',
+    link: <span>xxxx</span>,
   },
   {
     news: 'Text to come',
     change: 'xxxx',
-    link: 'xxxx',
+    link: <span>xxxx</span>,
   },
   {
     news: 'Text to come',
     change: 'xxxx',
-    link: 'xxxx',
+    link: <span>xxxx</span>,
   },
   {
     news: 'Text to come',
     change: 'xxxx',
-    link: 'xxxx',
+    link: <span>xxxx</span>,
   },
   {
     news: 'Text to come',
     change: 'xxxx',
-    link: 'xxxx',
+    link: <span>xxxx</span>,
   },
   {
     news: 'Text to come',
     change: 'xxxx',
-    link: 'xxxx',
+    link: <span>xxxx</span>,
   },
   {
     news: 'Text to come',
     change: 'xxxx',
-    link: 'xxxx',
+    link: <span>xxxx</span>,
   },
   {
     news: 'Text to come',
     change: 'xxxx',
-    link: 'xxxx',
+    link: <span>xxxx</span>,
   },
   {
     news: 'Text to come',
     change: 'xxxx',
-    link: 'xxxx',
+    link: <span>xxxx</span>,
   },
   {
     news: 'Text to come',
     change: 'xxxx',
-    link: 'xxxx',
-  },
-  {
-    news: 'Text to come',
-    change: 'xxxx',
-    link: 'xxxx',
-  },
-  {
-    news: 'Text to come',
-    change: 'xxxx',
-    link: 'xxxx',
-  },
-  {
-    news: 'Text to come',
-    change: 'xxxx',
-    link: 'xxxx',
+    link: <span>xxxx</span>,
   },
 ];
 export default function ExecutiveChanges({}) {

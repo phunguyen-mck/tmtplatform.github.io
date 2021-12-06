@@ -119,9 +119,15 @@ export default function ExecutiveChanges({}) {
             <HeaderCell align="left">Target Company</HeaderCell>
             <HeaderCell align="left">Announce Date</HeaderCell>
             <HeaderCell align="left">Closing Date</HeaderCell>
-            <HeaderCell align="left">Comments</HeaderCell>
-            <HeaderCell align="left">Consideration to SH (in USD m)</HeaderCell>
-            <HeaderCell align="left">Market Cap(in USD m)</HeaderCell>
+            <HeaderCell className="comment-cell" align="left">
+              Comments
+            </HeaderCell>
+            <HeaderCell className="consideration-cell" align="left">
+              Consideration to SH (in USD m)
+            </HeaderCell>
+            <HeaderCell className="marketcap-cell" align="left">
+              Market Cap(in USD m)
+            </HeaderCell>
             <HeaderCell align="left">Intensity</HeaderCell>
           </TableRow>
         </TableHead>

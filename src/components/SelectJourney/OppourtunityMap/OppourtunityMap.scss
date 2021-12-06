@@ -1,0 +1,134 @@
+.oppurtunity-th{
+    width: 25%;
+    color: #B3B3B3;
+    font-size: 16px;
+}
+.stakeholder-th {
+    width: 20%;
+    color: #B3B3B3;
+    font-size: 16px;
+}
+.timeline-th {
+    width: 20%;
+    color: #B3B3B3;
+    font-size: 16px;
+}
+.pursuit-th {
+    width: 20%;
+    color: #B3B3B3;
+    font-size: 16px;
+}
+.tcv-th{
+    width: 12.5%;
+    color: #B3B3B3;
+    font-size: 16px;
+}
+.action-th {
+    width: 12.5%;
+}
+.stakeholder-cell {
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    border: 1px solid #B3B3B3;
+    border-radius: 4px;    
+    width: 100%;
+    height: 60px;
+    padding: 1rem;
+    color: #000000;
+    opacity: 0.31;
+}
+.pursuit-cell {
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    border: 1px solid #B3B3B3;
+    border-radius: 4px;    
+    width: 100%;
+    height: 60px;
+    padding: 1rem;
+    color: #000000;
+    opacity: 0.31;
+}
+.timeline-cell{
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    border: 1px solid #B3B3B3;
+    border-radius: 4px;    
+    width: 100%;
+    height: 60px;
+    padding: 1rem;
+    color: #000000;
+    opacity: 0.31;
+}
+.tcv-cell {
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    border: 1px solid #B3B3B3;
+    border-radius: 4px;    
+    width: 100%;
+    height: 60px;
+}
+.oppurtunity-cell-wrapper{
+    width: 25%;
+}
+.action-cell {
+    color: blue !important;
+    cursor: pointer;
+}
+
+.oppoutunity-wrapper{
+    background: #F0F0F0 0% 0% no-repeat padding-box;
+border-radius: 4px;
+opacity: 0.6;
+padding: 0.1rem;
+height: 60px;
+}
+.oppoutunity-heading{
+    color: #000000;
+    font-size: 18px;
+    font-weight: 700;
+}
+.add-row-wrapper{
+    display: flex;
+    margin-left: 20px;
+    margin-top: 20px;
+}
+
+.tcv-cell-wrapper{
+    width: 12.5%;
+}
+.pursuitOwner-cell-wrapper {
+    width: 20%;
+}
+.stakeholder-cell-wrapper{
+    width: 20%;
+}
+.oppourtunity-cell-wrapper{
+    width: 25%;
+}
+.timeline-cell-wrapper{
+    width: 20%;
+}
+.action-cell-wrapper{
+    width: 12.5%;
+}
+.add-row-text{
+    cursor: pointer;
+}
+.icon-container-plus{
+    svg{
+        color: #2251FF;
+        margin-right: 15px;
+        cursor: pointer;
+        opacity: 1;
+    }
+}
+.download-container{
+    margin-top: 2rem;
+    text-align: center;
+    svg{
+        margin-left: 15px;
+        font-size: 20px;
+    }
+}
+.oppurtunity-container{
+    margin-left: 0.3rem;
+    p{
+        margin-bottom: 0;
+    }
+}

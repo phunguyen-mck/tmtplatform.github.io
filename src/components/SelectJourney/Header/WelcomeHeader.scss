@@ -1,0 +1,39 @@
+.oppurtunity-button{
+    margin-right: 12px;
+    margin-bottom: 12px;
+    position: relative;
+}
+.beta-text{
+    font-size: 9px;
+    font-weight: 300;
+    letter-spacing: 0.16px;
+    margin-left: 0.3rem;
+    margin-top: 0.3rem;
+}
+.breadcrumb-header{
+    display: flex;
+    position: relative;
+    span {
+        position: absolute;
+        font-size: 10px;
+        right: -22px;
+        top: 11px;
+        color: grey;
+
+    }
+    p{
+        color: grey;
+        font-weight: 600;
+    }
+}
+.welcome-text{
+    color: black;
+    font-size: 28px;
+    font-weight: 700;
+}
+.sub-text{
+    color: black;
+     font-size: 28px;
+    font-weight: 700;
+
+}
