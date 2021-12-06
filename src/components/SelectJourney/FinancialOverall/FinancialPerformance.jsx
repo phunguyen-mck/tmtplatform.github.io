@@ -8,7 +8,10 @@ import RevenueChartComponent, {
   BorderedDiv,
   Title,
 } from './RevenueChartComponent';
+import ChartDataLabels from 'chartjs-plugin-datalabels';
+import numeral from 'numeral';
 
+Chart.register(ChartDataLabels);
 Chart.register(CategoryScale);
 Chart.register(LinearScale);
 Chart.register(BarElement);
@@ -37,6 +40,20 @@ const EBITDA = function (props) {
   };
 
   const options = {
+    plugins: {
+      datalabels: {
+        color: '#000000',
+        anchor: 'end',
+        align: 'top',
+        formatter: function (value) {
+          return value + '%';
+        },
+        font: {
+          size: 14,
+        },
+      },
+    },
+
     scales: {
       x: {
         grid: {
@@ -123,6 +140,21 @@ const MarketCapitalization = function (props) {
         },
       },
     },
+    plugins: {
+      // Change options for ALL labels of THIS CHART
+      datalabels: {
+        color: '#000000',
+        anchor: 'end',
+        align: 'center',
+        clamp: true,
+        formatter: function (value) {
+          return '               ' + numeral(value).format('0,0');
+        },
+        font: {
+          size: 14,
+        },
+      },
+    },
   };
 
   const Container = styled.div`
@@ -196,6 +228,13 @@ const getData = function () {
         },
         {
           year: 2019,
+          institutionalClientsGroup: 35000,
+          globalConsumerBanking: 13000,
+          citiHoldings: 2500,
+          corporateOther: 10000,
+        },
+        {
+          year: 2020,
           institutionalClientsGroup: 35000,
           globalConsumerBanking: 13000,
           citiHoldings: 2500,

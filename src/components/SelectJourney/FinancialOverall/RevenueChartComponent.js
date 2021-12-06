@@ -120,13 +120,13 @@ export default function RevenueChartComponent(props) {
         <span>Revenue</span> (USD Mn)
       </Title>
       <BorderedDiv className="container">
-        <div className="row align-items-end">
-          <div className="col">
+        <div className="d-flex align-items-end justify-content-between">
+          <div className="px-2">
             <YAxis yAxisMax={80000} yAxisHeight={300} />
           </div>
           {_.map(revenue, (k) => {
             return (
-              <div className="col">
+              <div className="px-2">
                 <StackedChart data={k} yAxisMax={80000} yAxisHeight={300} />
               </div>
             );
