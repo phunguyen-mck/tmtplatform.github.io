@@ -48,6 +48,11 @@
     color: white;
     font-weight: 600;
 font-size: 18px;
+img{
+    position: absolute;
+    top: 13px;
+    right: 18px;
+    }
 }
 .box-content-black-text{
     width: 100%;
@@ -56,7 +61,12 @@ font-size: 18px;
     height: 46px;
     color: black;
     font-weight: 500;
-font-size: 18px;
+    font-size: 18px;
+    img{
+        position: absolute;
+        top: 13px;
+        right: 18px;
+        }
 }
 .icon-container{
     position: absolute;
@@ -71,8 +81,8 @@ font-size: 18px;
 }
 .free-flow-text{
     position: absolute;
-    top: 200px;
-    left:-60px;
+    top: 189px;
+    left: -66px;
     transform: rotate(-90deg);
     font-weight: 600;
 
@@ -115,6 +125,9 @@ max-width: 339px ;
 .profile-container-column{
     display: flex;
     flex-direction: column;
+    div:last-child {
+        margin-bottom: 0;
+    }
 }
 .profile-container p{
     line-height: 0.5;
@@ -130,4 +143,8 @@ max-width: 339px ;
 }
 .break-line{
     border-top: 3px solid #e6e6e6 !important;
+}
+.usecase-container{
+    padding-left: 24px;
+    position: relative;
 }

@@ -14,7 +14,7 @@ import {
 import styled from '@emotion/styled';
 import './SelectJourney.css';
 import { createTheme, ThemeProvider } from '@mui/material';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import TopOfferingContent from './TopOfferingContent';
 import DigitalPayment from '../components/SelectJourney/DigitalPayment';
 import IndustryTabs from '../components/Tabs/Tabs';
@@ -37,6 +37,7 @@ import WelcomeHeader from 'components/SelectJourney/Header/WelcomeHeader';
 import OppourtunityMap from 'components/SelectJourney/OppourtunityMap/OppourtunityMap';
 export default function SelectJourney() {
   const [value, setValue] = React.useState(0);
+  let navigate = useNavigate();
   const [dashboardTitle, setDashboardTitle] = React.useState('');
   const [isRedirectToOppourtunityPage, setIsRedirectToOppourtunityPage] =
     React.useState(false);
@@ -62,6 +63,9 @@ export default function SelectJourney() {
   };
   const handleGoBackSelectJourneyScreen = () => {
     setIsRedirectToOppourtunityPage(false);
+  };
+  const handleGoBackSelectStrategyScreen = () => {
+    navigate('/journey/select-strategy');
   };
   const theme = createTheme({
     typography: {
@@ -153,6 +157,7 @@ export default function SelectJourney() {
               handleOnClickOpenOppourtunityButton
             }
             handleGoBackSelectJourneyScreen={handleGoBackSelectJourneyScreen}
+            handleGoBackSelectStrategyScreen={handleGoBackSelectStrategyScreen}
           />
           <IndustryTabs
             tabIndex={value}

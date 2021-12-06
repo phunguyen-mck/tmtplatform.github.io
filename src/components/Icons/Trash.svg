@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24.42" height="26.233" viewBox="0 0 24.42 26.233">
+  <g id="Component_16_12" data-name="Component 16 – 12" transform="translate(0.5 0.5)">
+    <g id="Group_196" data-name="Group 196">
+      <path id="Path_49" data-name="Path 49" d="M23.5,14V25.775A2.523,2.523,0,0,1,20.981,28.3H7.523A2.523,2.523,0,0,1,5,25.776V14" transform="translate(-2.608 -3.066)" fill="none" stroke="#2251ff" stroke-linecap="square" stroke-miterlimit="10" stroke-width="1"/>
+      <line id="Line_24" data-name="Line 24" y2="7.206" transform="translate(11.71 12.715)" fill="none" stroke="#2251ff" stroke-linecap="square" stroke-miterlimit="10" stroke-width="1"/>
+      <line id="Line_25" data-name="Line 25" y2="7.206" transform="translate(7.206 12.715)" fill="none" stroke="#2251ff" stroke-linecap="square" stroke-miterlimit="10" stroke-width="1"/>
+      <line id="Line_26" data-name="Line 26" y2="7.206" transform="translate(16.214 12.715)" fill="none" stroke="#2251ff" stroke-linecap="square" stroke-miterlimit="10" stroke-width="1"/>
+      <path id="Path_50" data-name="Path 50" d="M11,5.206V1h8.411V5.206" transform="translate(-3.562 -1)" fill="none" stroke="#2251ff" stroke-miterlimit="10" stroke-width="1"/>
+      <rect id="Rectangle_19" data-name="Rectangle 19" width="23.42" height="2.702" transform="translate(0 4.608)" fill="none" stroke="#2251ff" stroke-linecap="square" stroke-miterlimit="10" stroke-width="1"/>
+    </g>
+  </g>
+</svg>

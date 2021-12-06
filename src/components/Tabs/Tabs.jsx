@@ -40,7 +40,14 @@ export default function IndustryTabs({
               icon={renderTabIcon(index)}
               label={
                 <div>
-                  <span className="tabTitle">{tab.title}</span>
+                  <span
+                    className={classnames({
+                      subTab: !isWithIcon,
+                      tabTitle: tabIndex !== index,
+                    })}
+                  >
+                    {tab.title}
+                  </span>
                 </div>
               }
             />

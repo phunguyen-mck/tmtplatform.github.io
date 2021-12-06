@@ -9,14 +9,25 @@
     svg{
         color: #2251FF !important;
     }   
+    text-transform: none !important;
+
     color: #2251FF !important;
+    font-weight: 700;
+    font-size: 16px !important;
+
  }
  .tabTitle{
-     font-weight: 700;
      font-family: "McKinsey Sans Regular", "Helvetica Neue", Calibri, Corbel, Helvetica, Roboto, Droid, sans-serifl !important;
- }
+    text-transform: none !important;
+    font-size: 16px !important;
+    color: #051C2C;
+    
+}
  .tabContainer {
     .MuiTabs-indicator{
         background: blue !important;
     }
+ }
+ .subTab{ 
+     font-size: 14px !important;
  }

@@ -8,29 +8,22 @@ import {
   Button as ButtonMDS,
   BADGE_TYPE_INFORMATION_DEFAULT,
   SIZE_SMALL,
-  TYPE_OUTLINE,
-  Typography,
-  BODY_DEFAULT,
   CONTRAST_BUTTON,
   ThemeProvider,
 } from '@mds/mds-reactjs-library';
+import DocumentIcon from 'components/Icons/Documents.svg';
+
 import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
 import './WelcomeHeader.scss';
-import {
-  OVERALL_FINANCIAL_TAB,
-  TOP_DIGITAL_OFFERING_TAB,
-  IT_SPEND_MAP,
-  PAST_DEAL_TAB,
-  MAJOR_DEALS_TAB,
-  ORG_STAKEHOLDERS_TAB,
-} from '../../../constant/tabsMapObject';
+import { ORG_STAKEHOLDERS_TAB } from '../../../constant/tabsMapObject';
 export default function WelcomeHeader({
   withBadge,
   tabValue,
   isRedirectToOppourtunityPage,
   handleOnClickOpenOppourtunityButton,
   handleGoBackSelectJourneyScreen,
+  handleGoBackSelectStrategyScreen,
 }) {
   const ButtonStyled = styled(ButtonMDS)`
     margin-right: 12px;
@@ -40,6 +33,7 @@ export default function WelcomeHeader({
   const ContainerContent = styled.div`
     height: auto;
     padding: 10px;
+    padding-bottom: 0;
     display: flex;
     align-item: center;
   `;
@@ -48,6 +42,7 @@ export default function WelcomeHeader({
   `;
   const ContentItemContainer = styled.div`
     padding: 10px;
+    padding-top: 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -65,7 +60,7 @@ export default function WelcomeHeader({
     font-weight: bold;
     font-size: 28px;
   `;
-  const userIcon = <Icon size={16} type={TYPE_OUTLINE} name="single-01" />;
+  const documentIcon = <Icon src={DocumentIcon} className="ml-3" size={32} />;
   const renderBreadcrumbs = () => {
     if (!isRedirectToOppourtunityPage) {
       return (
@@ -86,8 +81,11 @@ export default function WelcomeHeader({
       <Container>
         <ContainerContent>
           <IconContainer
+            className="goback-container"
             onClick={
-              isRedirectToOppourtunityPage && handleGoBackSelectJourneyScreen
+              isRedirectToOppourtunityPage
+                ? handleGoBackSelectJourneyScreen
+                : handleGoBackSelectStrategyScreen
             }
           >
             <Icon name="arrow-left" type="glyph" size={16} />
@@ -113,7 +111,10 @@ export default function WelcomeHeader({
                   <span className="beta-text">BETA</span>
                 </ButtonMDS>
               )}
-              <ButtonStyled appearance={SECONDARY_BUTTON} endIcon={userIcon}>
+              <ButtonStyled
+                appearance={SECONDARY_BUTTON}
+                endIcon={documentIcon}
+              >
                 Slide deck{' '}
               </ButtonStyled>
               <StyledBadge

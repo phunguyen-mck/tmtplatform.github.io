@@ -11,7 +11,7 @@
     margin-top: 1.5rem !important;
     margin-bottom: 10px !important; 
     font-weight: 600 !important;
-    font-style: 1.6rem !important;
+    font-size: 20px !important  ;
 }
 
 .percentage-wrapper{
@@ -22,13 +22,16 @@
  justify-content: flex-end;
 }
 .money-value {
+    font-family: "McKinsey Sans";
     font-weight: 600;
-    color: blue;
+    color: #2251FF;
     flex:1
 }
 .cagr-text{
-    font-weight: 200;
     font-style: italic;
+    color: #000000;
+opacity: 0.5;
+font-size: 12px;
 }
 .percentage-value{
     border-radius:15px;

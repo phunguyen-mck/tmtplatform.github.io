@@ -15,7 +15,7 @@ import {
   Button,
   SECONDARY_BUTTON,
 } from '@mds/mds-reactjs-library';
-import DeleteIcon from '@mui/icons-material/Delete';
+import TrashIcon from '../../Icons/Trash.svg';
 import FileUploadOutlinedIcon from '@mui/icons-material/FileUploadOutlined';
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -69,7 +69,7 @@ const rowsData = [
     action: (
       <div className="action-cell">
         {' '}
-        <DeleteIcon />{' '}
+        <img src={TrashIcon} />{' '}
       </div>
     ),
   },
@@ -92,7 +92,7 @@ const rowsData = [
     action: (
       <div className="action-cell">
         {' '}
-        <DeleteIcon />{' '}
+        <img src={TrashIcon} />{' '}
       </div>
     ),
   },
@@ -115,7 +115,7 @@ const rowsData = [
     action: (
       <div className="action-cell">
         {' '}
-        <DeleteIcon />{' '}
+        <img src={TrashIcon} />{' '}
       </div>
     ),
   },
@@ -138,7 +138,7 @@ const rowsData = [
     action: (
       <div className="action-cell">
         {' '}
-        <DeleteIcon />{' '}
+        <img src={TrashIcon} />{' '}
       </div>
     ),
   },
@@ -161,7 +161,7 @@ const rowsData = [
     action: (
       <div className="action-cell">
         {' '}
-        <DeleteIcon />{' '}
+        <img src={TrashIcon} />{' '}
       </div>
     ),
   },
@@ -184,7 +184,7 @@ const rowsData = [
     action: (
       <div className="action-cell">
         {' '}
-        <DeleteIcon />{' '}
+        <img src={TrashIcon} />{' '}
       </div>
     ),
   },

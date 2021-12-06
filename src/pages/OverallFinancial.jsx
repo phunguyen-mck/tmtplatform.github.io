@@ -13,6 +13,7 @@ import FinancialPerformance from 'components/SelectJourney/FinancialOverall/Fina
 import ExecutiveChanges from 'components/SelectJourney/FinancialOverall/ExecutiveChanges';
 import MATransaction from 'components/SelectJourney/FinancialOverall/MATransaction';
 import RecentDevelopment from 'components/SelectJourney/FinancialOverall/RecentDevelopment';
+import './OverallFinancial.scss';
 export default function OverallFinancial() {
   const [tabIndex, setTabIndex] = React.useState(1);
   const handleTabChange = (event, newValue) => {
@@ -34,7 +35,7 @@ export default function OverallFinancial() {
     return <ExecutiveChanges />;
   };
   return (
-    <div>
+    <div className="overall-financial-container">
       <IndustryTabs
         tabIndex={tabIndex}
         handleOnChange={handleTabChange}
