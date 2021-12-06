@@ -4,90 +4,14 @@ import { BarElement, CategoryScale, Chart, LinearScale } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
 import _ from 'lodash';
 import styled from '@emotion/styled';
+import RevenueChartComponent, {
+  BorderedDiv,
+  Title,
+} from './RevenueChartComponent';
 
 Chart.register(CategoryScale);
 Chart.register(LinearScale);
 Chart.register(BarElement);
-
-const Revenue = function (props) {
-  const { revenue } = props;
-  const labels = _.map(revenue, (k) => k.year);
-
-  // refactor this
-  const institutionalClientsGroup = _.map(revenue, (k) => {
-    return k.institutionalClientsGroup;
-  });
-  const globalConsumerBanking = _.map(revenue, (k) => {
-    return k.globalConsumerBanking;
-  });
-  const citiHoldings = _.map(revenue, (k) => {
-    return k.citiHoldings;
-  });
-  const corporateOther = _.map(revenue, (k) => {
-    return k.corporateOther;
-  });
-
-  const data = {
-    labels: labels,
-    datasets: [
-      {
-        label: 'institutionalClientsGroup',
-        data: institutionalClientsGroup,
-        backgroundColor: ['#051C2C'],
-        borderWidth: 0,
-        borderRadius: Number.MAX_VALUE,
-        borderSkipped: false,
-      },
-      {
-        label: 'globalConsumerBanking',
-        data: globalConsumerBanking,
-        backgroundColor: ['#2251FF'],
-      },
-      {
-        label: 'citiHoldings',
-        data: citiHoldings,
-        backgroundColor: ['#00A9F4'],
-      },
-      {
-        label: 'corporateOther',
-        data: corporateOther,
-        backgroundColor: ['#AAE6F0'],
-        borderWidth: 0,
-        borderRadius: Number.MAX_VALUE,
-        borderSkipped: false,
-      },
-    ],
-  };
-
-  const options = {
-    scales: {
-      x: {
-        stacked: true,
-        grid: {
-          display: false,
-        },
-      },
-      y: {
-        stacked: true,
-        display: true,
-        grid: {
-          display: false,
-        },
-      },
-    },
-  };
-
-  const Container = styled.div`
-    height: 600px;
-  `;
-
-  return (
-    <Container>
-      <div>Revenue (USD Mn)</div>
-      <Bar data={data} options={options} />
-    </Container>
-  );
-};
 
 const EBITDA = function (props) {
   const { EBITDAMargin } = props;
@@ -132,8 +56,12 @@ const EBITDA = function (props) {
 
   return (
     <Container>
-      <div>EBITDA Margin (%)</div>
-      <Bar data={data} options={options} />
+      <Title className="mb-4">
+        <span>EBITDA Margin</span> (%)
+      </Title>
+      <BorderedDiv>
+        <Bar data={data} options={options} height={300} />
+      </BorderedDiv>
     </Container>
   );
 };
@@ -184,12 +112,18 @@ const MarketCapitalization = function (props) {
     },
   };
 
-  const Container = styled.div``;
+  const Container = styled.div`
+    height: 600px;
+  `;
 
   return (
     <Container>
-      <div>Market capitalisation, CY (USB Mn)</div>
-      <Bar data={data} options={options} />
+      <Title className="mb-4">
+        <span>Market capitalisation, CY</span> (USB Mn)
+      </Title>
+      <BorderedDiv>
+        <Bar data={data} options={options} height={169} />
+      </BorderedDiv>
     </Container>
   );
 };
@@ -198,10 +132,12 @@ export default function FinancialPerformance() {
   const data = getData();
   return (
     <ThemeProvider>
-      <div className="container-fluid p-8">
+      <div className="container-fluid px-2 py-8">
         <div className="row">
           <div className="col-4">
-            <Revenue revenue={_.get(data, 'client.revenue') || []} />
+            <RevenueChartComponent
+              revenue={_.get(data, 'client.revenue') || []}
+            />
           </div>
           <div className="col-3">
             <EBITDA EBITDAMargin={_.get(data, 'client.EBITDAMargin') || []} />
@@ -226,7 +162,6 @@ const getData = function () {
       revenue: [
         {
           year: 2016,
-          margin: 35,
           institutionalClientsGroup: 35000,
           globalConsumerBanking: 13000,
           citiHoldings: 2500,
@@ -234,15 +169,13 @@ const getData = function () {
         },
         {
           year: 2017,
-          margin: 36,
-          institutionalClientsGroup: 35000,
-          globalConsumerBanking: 13000,
-          citiHoldings: 2500,
-          corporateOther: 10000,
+          institutionalClientsGroup: 3000,
+          globalConsumerBanking: 1000,
+          citiHoldings: 25000,
+          corporateOther: 20000,
         },
         {
           year: 2018,
-          margin: 36,
           institutionalClientsGroup: 35000,
           globalConsumerBanking: 13000,
           citiHoldings: 2500,
@@ -250,7 +183,6 @@ const getData = function () {
         },
         {
           year: 2019,
-          margin: 25,
           institutionalClientsGroup: 35000,
           globalConsumerBanking: 13000,
           citiHoldings: 2500,
