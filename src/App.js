@@ -13,6 +13,7 @@ import SelectJourney from './pages/SelectJourney';
 import HeaderComponent from './components/layout/Header';
 import SelectUnitOfPerformance from 'SelectUnitOfPerformance';
 import './styles/global.scss';
+
 function App() {
   return (
     <ThemeProvider>
@@ -33,7 +34,6 @@ function App() {
             path={RoutePathsMap.Journey.Setup}
             element={<SelectJourney />}
           />
-          <Route path="/active-engagements" element={<ActiveEngagements />} />
           <Route path="/active-engagements" element={<ActiveEngagements />} />
           <Route
             path="/unit-of-performance"

@@ -34,6 +34,7 @@ const UnitOfPerformanceCard = function (props) {
     border-radius: 8px;
     align-items: center;
     color: #333333;
+    cursor: pointer;
 
     & + * {
       margin-left: 28px;
@@ -66,7 +67,11 @@ const UnitOfPerformanceCard = function (props) {
     max-width: 150px;
   `;
   return (
-    <Container>
+    <Container
+      onClick={() => {
+        props.onClick && props.onClick();
+      }}
+    >
       <IconContainer>
         <Icon size={48} type={TYPE_OUTLINE} src={props.iconSrc} />
       </IconContainer>
@@ -97,7 +102,13 @@ const SelectUnitOfPerformance = function () {
           </div>
           <Title className="mt-3">Select units of performance</Title>
           <div className="d-flex flex-row mt-5">
-            <UnitOfPerformanceCard name={'Account'} iconSrc={Account} />
+            <UnitOfPerformanceCard
+              name={'Account'}
+              iconSrc={Account}
+              onClick={() => {
+                navigate('/journey');
+              }}
+            />
             <UnitOfPerformanceCard name={'Deals'} iconSrc={Deals} />
             <UnitOfPerformanceCard
               name={'Service Lines'}
