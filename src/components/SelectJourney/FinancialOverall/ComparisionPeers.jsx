@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import styled from '@emotion/styled';
 
-import { Grid, Button } from '@mds/mds-reactjs-library';
+import { Grid, Button, SECONDARY_BUTTON, Icon } from '@mds/mds-reactjs-library';
+
+import DocumentIcon from 'components/Icons/Documents.svg';
 
 import ComparisionPeersByRevenue from './ComparisionPeersByRevenue';
 import ComparisionPeersBySize from './ComparisionPeersBySize';
@@ -27,33 +29,41 @@ const StyledGridContainer = styled(Grid)`
 const ComparisionByPeer = () => {
   const [byMetric, setByMetric] = useState(REVENUE_METRIC);
   return (
-    <StyledGridContainer container className="mt-5">
-      <Grid item style={{ width: 200 }}>
-        <StyledButton
-          selected={byMetric === REVENUE_METRIC}
-          onClick={() => setByMetric(REVENUE_METRIC)}
-        >
-          Revenue
-        </StyledButton>
-        <StyledButton
-          selected={byMetric === SIZE_METRIC}
-          onClick={() => setByMetric(SIZE_METRIC)}
-        >
-          Size
-        </StyledButton>
-        <StyledButton
-          selected={byMetric === GROWTH_METRIC}
-          onClick={() => setByMetric(GROWTH_METRIC)}
-        >
-          Growth
-        </StyledButton>
-      </Grid>
-      <Grid item flex={1}>
-        {byMetric === REVENUE_METRIC && <ComparisionPeersByRevenue />}
-        {byMetric === SIZE_METRIC && <ComparisionPeersBySize />}
-        {byMetric === GROWTH_METRIC && <ComparisionPeersByGrowth />}
-      </Grid>
-    </StyledGridContainer>
+    <div>
+      <StyledGridContainer container className="mt-5">
+        <Grid item style={{ width: 200 }}>
+          <StyledButton
+            selected={byMetric === REVENUE_METRIC}
+            onClick={() => setByMetric(REVENUE_METRIC)}
+          >
+            Revenue
+          </StyledButton>
+          <StyledButton
+            selected={byMetric === SIZE_METRIC}
+            onClick={() => setByMetric(SIZE_METRIC)}
+          >
+            Size
+          </StyledButton>
+          <StyledButton
+            selected={byMetric === GROWTH_METRIC}
+            onClick={() => setByMetric(GROWTH_METRIC)}
+          >
+            Growth
+          </StyledButton>
+        </Grid>
+        <Grid item flex={1}>
+          {byMetric === REVENUE_METRIC && <ComparisionPeersByRevenue />}
+          {byMetric === SIZE_METRIC && <ComparisionPeersBySize />}
+          {byMetric === GROWTH_METRIC && <ComparisionPeersByGrowth />}
+        </Grid>
+      </StyledGridContainer>
+      <div className="w-100 text-center mt-6">
+        <Button appearance={SECONDARY_BUTTON}>
+          Add to slide
+          <Icon src={DocumentIcon} className="ml-3" size={32} />
+        </Button>
+      </div>
+    </div>
   );
 };
 

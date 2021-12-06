@@ -25,13 +25,6 @@ const StyledRowInner = styled.div`
   font-size: 12;
 `;
 
-const StyledVerticalDivider = styled.div`
-  border: 1px solid #f0f0f0;
-  height: ${(prop) => prop.height}px;
-  position: absolute;
-  left: 50%;
-`;
-
 const Chart = ({ data, width, rowHeight, formatPointValue }) => {
   const { values, backgroundColors } = data;
   const maxPointValue = useMemo(

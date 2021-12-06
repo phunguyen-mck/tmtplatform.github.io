@@ -19,7 +19,6 @@ const Wrapper = styled.div`
 
 const StyledGridWrapper = styled(Grid)`
   width: 100%;
-  max-width: 1180px;
   justify-content: center;
   flex-wrap: nowrap;
 `;
@@ -138,12 +137,13 @@ const ChartLegend = ({ labels, rowHeight }) => {
   );
 };
 
-const ChartDatasetName = ({ displayNames, columnWidth }) => {
+const ChartDatasetName = ({ displayNames }) => {
   const StyledContainer = styled(Grid)`
     width: 100%;
     justify-content: center;
     font-size: 12;
-    margin-bottom: 16px;
+    margin-bottom: 32px;
+    flex-wrap: nowrap;
   `;
 
   const renderDisplayName = (displayName) => (
