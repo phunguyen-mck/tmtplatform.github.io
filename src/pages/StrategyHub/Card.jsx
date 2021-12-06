@@ -2,12 +2,12 @@ import React from 'react';
 import { useNavigate } from 'react-router';
 import { Typography, Grid, Icon } from '@mds/mds-reactjs-library';
 
-import styled from '@emotion/styled';
-
-import ArrowRight from '@mds/mds-icons/icons/svg/outline-16-arrow-right.svg';
+import styled from '@emotion/styled/macro';
 
 import useThemeColorMapping from 'hooks/useThemeColorMapping';
 import { navigateToJourneySetupPage } from 'lib/navigators';
+
+import NextIconButton from './NextIconButton';
 
 const StyledCard = styled.div`
   width: 320px;
@@ -18,23 +18,11 @@ const StyledCard = styled.div`
   border-radius: 6px;
   opacity: 1;
 `;
-const IconWrapper = styled.div`
-  width: ${(prop) => prop.size}px;
-  height: ${(prop) => prop.size}px;
-  border-radius: 50%;
-  border: 1px solid;
-  border-color: ${(props) => props.color};
-  cursor: pointer;
-`;
-
-const StyledIcon = styled(Icon)`
-  width: ${(props) => props.size}px;
-  height: ${(props) => props.size}px;
-`;
 
 const StrategyCard = ({ icon, name }) => {
   const { primaryColor } = useThemeColorMapping();
   const navigate = useNavigate();
+
   return (
     <StyledCard className="shadow p-3 bg-white">
       <div className="mb-2">
@@ -53,19 +41,9 @@ const StrategyCard = ({ icon, name }) => {
           </Typography>
         </Grid>
         <Grid item align="right">
-          <IconWrapper
-            color={primaryColor}
-            size={28}
-            className="d-flex align-items-center justify-content-center"
+          <NextIconButton
             onClick={() => navigateToJourneySetupPage(navigate)}
-          >
-            <StyledIcon
-              size={12}
-              type="outline"
-              src={ArrowRight}
-              fill={primaryColor}
-            />
-          </IconWrapper>
+          />
         </Grid>
       </Grid>
     </StyledCard>
