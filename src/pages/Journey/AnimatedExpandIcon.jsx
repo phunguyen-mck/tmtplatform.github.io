@@ -24,7 +24,7 @@ const IconWrapper = styled.span`
   justify-content: center;
   overflow: hidden;
 
-  @keyframes iconmove {
+  @keyframes iconmovetop {
     0% {
       transform: translateY(0px);
     }
@@ -64,7 +64,8 @@ const IconWrapper = styled.span`
 
   :hover {
     ${StyledIcon} {
-      animation: ${(prop) => (prop.expanded ? 'iconmoveup' : 'iconmove')} 0.5s;
+      animation: ${(prop) => (prop.expanded ? 'iconmoveup' : 'iconmovetop')}
+        0.5s;
     }
   }
 `;
