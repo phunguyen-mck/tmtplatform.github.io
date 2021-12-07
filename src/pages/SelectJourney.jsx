@@ -89,7 +89,7 @@ export default function SelectJourney() {
   const FreeSpaceBackground = styled.div`
     width: 100%;
     background-color: #f5f5f5;
-    padding: 1rem;
+    padding: 30px;
   `;
 
   const renderTabContent = () => {
