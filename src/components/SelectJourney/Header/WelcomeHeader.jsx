@@ -1,15 +1,16 @@
 import React from 'react';
 import {
-  Container,
-  Breadcrumbs,
-  Icon,
   Badge,
-  SECONDARY_BUTTON,
-  Button as ButtonMDS,
   BADGE_TYPE_INFORMATION_DEFAULT,
-  SIZE_SMALL,
+  Breadcrumbs,
+  Button as ButtonMDS,
+  Container,
   CONTRAST_BUTTON,
+  Icon,
+  SECONDARY_BUTTON,
+  SIZE_SMALL,
   ThemeProvider,
+  TYPE_OUTLINE,
 } from '@mds/mds-reactjs-library';
 import DocumentIcon from 'components/Icons/Documents.svg';
 
@@ -17,6 +18,8 @@ import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
 import './WelcomeHeader.scss';
 import { ORG_STAKEHOLDERS_TAB } from '../../../constant/tabsMapObject';
+import ArrowLeft from '../../../images/arrow-left.svg';
+
 export default function WelcomeHeader({
   withBadge,
   tabValue,
@@ -32,17 +35,17 @@ export default function WelcomeHeader({
   `;
   const ContainerContent = styled.div`
     height: auto;
-    padding: 10px;
-    padding-bottom: 0;
+    padding: 10px 10px 0;
     display: flex;
     align-item: center;
   `;
   const IconContainer = styled.div`
     margin-right: 10px;
+    display: flex;
+    align-item: center;
   `;
   const ContentItemContainer = styled.div`
-    padding: 10px;
-    padding-top: 0;
+    padding: 0 10px 10px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -65,14 +68,14 @@ export default function WelcomeHeader({
     if (!isRedirectToOppourtunityPage) {
       return (
         <Breadcrumbs>
-          <Link to="/journey/select-strategy">Select units of performance</Link>
+          <Link to="/unit-of-performance">Select units of performance</Link>
           <a href="#">Select your journey </a>
         </Breadcrumbs>
       );
     }
     return (
       <div className="breadcrumb-header">
-        <p>Oppourtunity</p> <span>Beta</span>
+        <p>Opportunity</p> <span>Beta</span>
       </div>
     );
   };
@@ -80,16 +83,16 @@ export default function WelcomeHeader({
     <ThemeProvider>
       <Container>
         <ContainerContent>
-          <IconContainer
-            className="goback-container"
+          <div
+            className="goback-container mr-3 d-flex align-items-center"
             onClick={
               isRedirectToOppourtunityPage
                 ? handleGoBackSelectJourneyScreen
                 : handleGoBackSelectStrategyScreen
             }
           >
-            <Icon name="arrow-left" type="glyph" size={16} />
-          </IconContainer>
+            <Icon size={16} type={TYPE_OUTLINE} src={ArrowLeft} />
+          </div>
           {renderBreadcrumbs()}
         </ContainerContent>
         <ContentItemContainer>

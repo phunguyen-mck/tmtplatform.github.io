@@ -6,6 +6,7 @@ import CheckCircleOutlinedIcon from '@mui/icons-material/CheckCircleOutlined';
 import classnames from 'classnames';
 import { Container } from '@mds/mds-reactjs-library';
 import './Tabs.scss';
+
 export default function IndustryTabs({
   tabIndex,
   handleOnChange,
