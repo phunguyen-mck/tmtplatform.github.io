@@ -93,7 +93,7 @@ font-size: 12px;
       border-bottom: 1px solid white !important;
   }
   .scrollable {
-    height: 500px;
+    height: 700px;
     overflow: auto;
     width: 100%;
   }

@@ -4,6 +4,15 @@ import { Bar } from 'react-chartjs-2';
 import React from 'react';
 import numeral from 'numeral';
 
+const LegendTexts = {
+  institutionalClientsGroup: 'Institutional Clients Group',
+  globalConsumerBanking: 'Global Consumer Banking',
+  citiHoldings: 'Citi Holdings',
+  corporateOther: 'Corporate / Other',
+};
+
+const bgColors = ['#AAE6F0', '#00A9F4', '#2251FF', '#051C2C'];
+
 const Label = styled.div`
   font: normal normal 300 14px/9px McKinsey Sans;
   color: #7f7f7f;
@@ -62,7 +71,6 @@ const StackedChart = function (props) {
 
   let currentHeight = 0;
   let i = 0;
-  const bgColors = ['#AAE6F0', '#00A9F4', '#2251FF', '#051C2C'];
 
   return (
     <div className="d-flex  align-items-center flex-column">
@@ -110,17 +118,39 @@ export const Title = styled.div`
 export default function RevenueChartComponent(props) {
   const { revenue } = props;
 
-  const Container = styled.div`
-    height: 600px;
+  const Container = styled.div``;
+
+  const ColorLabel = styled.div`
+    width: 16px;
+    height: 16px;
+    border-radius: 16px;
+    display: inline-block;
+    margin-right: 8px;
   `;
 
+  let i = 0;
   return (
     <Container>
       <Title className="mb-4">
         <span>Revenue</span> (USD Mn)
       </Title>
       <BorderedDiv className="container">
-        <div className="d-flex align-items-end justify-content-between">
+        <div className="row">
+          {_.map(_.omit(_.get(revenue, '0'), ['year']), (k, v) => {
+            return (
+              <div className="col-6 pl-4 d-flex align-items-center px-1">
+                <ColorLabel
+                  style={{
+                    backgroundColor: bgColors[i++],
+                  }}
+                />
+                <span>{LegendTexts[v]}</span>
+              </div>
+            );
+          })}
+        </div>
+
+        <div className="d-flex align-items-end justify-content-between mt-4">
           <div className="px-2">
             <YAxis yAxisMax={80000} yAxisHeight={300} />
           </div>

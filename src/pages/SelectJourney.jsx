@@ -1,16 +1,4 @@
 import React from 'react';
-import {
-  Container,
-  Breadcrumbs,
-  Icon,
-  Badge,
-  SECONDARY_BUTTON,
-  Button as ButtonMDS,
-  BADGE_TYPE_INFORMATION_DEFAULT,
-  SIZE_SMALL,
-  Typography,
-  BODY_DEFAULT,
-} from '@mds/mds-reactjs-library';
 import styled from '@emotion/styled';
 import './SelectJourney.css';
 import { createTheme, ThemeProvider } from '@mui/material';
@@ -20,12 +8,12 @@ import DigitalPayment from '../components/SelectJourney/DigitalPayment';
 import IndustryTabs from '../components/Tabs/Tabs';
 import OverallFinancial from './OverallFinancial';
 import {
-  OVERALL_FINANCIAL_TAB,
-  TOP_DIGITAL_OFFERING_TAB,
   IT_SPEND_MAP,
-  PAST_DEAL_TAB,
   MAJOR_DEALS_TAB,
   ORG_STAKEHOLDERS_TAB,
+  OVERALL_FINANCIAL_TAB,
+  PAST_DEAL_TAB,
+  TOP_DIGITAL_OFFERING_TAB,
 } from '../constant/tabsMapObject';
 import { industryTabLabels } from '../constant/TabLabels';
 
